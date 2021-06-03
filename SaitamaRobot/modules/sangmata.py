@@ -82,10 +82,10 @@ async def _(event):
             #   events.NewMessage(incoming=True, from_users=1706537835)
             # )
 
-            await silently_send_message(conv, f"/search_id {uid}")
+            await silently_send_message(conv, f"/check_name {uid}")
 
             # response = await response
-            responses = await silently_send_message(conv, f"/search_id {uid}")
+            responses = await silently_send_message(conv, f"/check_name {uid}")
         except YouBlockedUserError:
 
             await event.reply("```Please unblock @Sangmatainfo_bot and try again```")
