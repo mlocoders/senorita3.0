@@ -166,7 +166,7 @@
          "required": true,
          "value": ""
        }, 
-       "REDIS_URI": {
+       "REDIS_URL": {
          "description": "Redis Url create one from redislabs.com.",
          "required": true,
          "value": ""
