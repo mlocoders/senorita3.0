@@ -21,7 +21,7 @@
 </p>
 <p align="center">
 <a href="https://t.me/FoundingTitanupdates" alt="Telegram!"> <img src="https://aleen42.github.io/badges/src/telegram.svg" /> </a>
-<a href="" alt=<"https://github.com/sasukeuchiha912"> <img src="https://img.shields.io/badge/Built%20by-Sasuke-blue" /> </a>
+<a href="https://github.com/sasukeuchiha912"> <img src="https://img.shields.io/badge/Built%20by-Sasuke-blue" /> </a>
 <a href="https://github.com/sasukeuchiha/FoundingTitanRobot/graphs/commit-activity" alt="Maintenance"> <img src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" /> </a>
 <a href="https://makeapullrequest.com" alt="PRs Welcome"> <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square" /> </a>
 </p>
