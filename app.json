@@ -173,12 +173,12 @@
        }, 
        "APP_ID": {
          "description": "API ID of 2nd telegram account if you dont have two accounts then use the same accounts API ID, but i recommend using 2nd accounts API ID",
-         "required": true,
+         "required": false,
          "value": ""
       }, 
       "APP_HASH": {
          "description": " API HASH of 2nd telegram account if you dont two accounts then use the same accounts API HASH, but i recommend using 2nd accounts API HASH.",
-         "required": true,
+         "required": false,
          "value": ""
        }, 
        "STRING_SESSION": {
