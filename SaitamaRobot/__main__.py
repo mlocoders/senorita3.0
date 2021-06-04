@@ -72,7 +72,7 @@ def get_readable_time(seconds: int) -> str:
 
 
 PM_START_TEXT = """
- Hi {}, I'm {}!
+ Hi {}, I'm [Eren Jaeger](https://telegra.ph/file/06355bb1cd9d0c53d1171.jpg)
 I am an Attack on Titan anime themed group management bot,
 Built by weebs for weebs, I specialize in managing anime eccentric communities.
 """
@@ -95,7 +95,6 @@ List of all the Modules:
     "" if not ALLOW_EXCL else "📝All commands can either be used with / or !.",
 )
 
-EREN_IMG = "https://telegra.ph/file/06355bb1cd9d0c53d1171.jpg"
 
 DONATE_STRING = """Plant a tree and give water to birds, that's your donation.."""
 
@@ -201,13 +200,13 @@ def start(update: Update, context: CallbackContext):
             elif args[0][1:].isdigit() and "rules" in IMPORTED:
                 IMPORTED["rules"].send_rules(update, args[0], from_pm=True)
 
-        else:
-            first_name = update.effective_user.first_name
-            update.effective_message.reply_photo(
-                EREN_IMG,
-                PM_START_TEXT.format(
-                    escape_markdown(first_name), escape_markdown(context.bot.first_name),
-                ),
+        else:            
+            update.effective_message.reply_text(
+                PM_START_TEXT,
+                reply_markup=InlineKeyboardMarkup(buttons),
+                parse_mode=ParseMode.MARKDOWN,
+                timeout=60,
+            )
                 parse_mode=ParseMode.MARKDOWN,
                 disable_web_page_preview=True,
                 reply_markup=InlineKeyboardMarkup(
