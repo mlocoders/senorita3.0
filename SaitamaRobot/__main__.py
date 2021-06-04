@@ -72,7 +72,7 @@ def get_readable_time(seconds: int) -> str:
 
 
 PM_START_TEXT = """
- Hi {}, I'm [Eren Jaeger](https://telegra.ph/file/06355bb1cd9d0c53d1171.jpg)
+ Hey `there`, I'm [Eren Jaeger](https://telegra.ph/file/06355bb1cd9d0c53d1171.jpg)
 I am an Attack on Titan anime themed group management bot,
 Built by weebs for weebs, I specialize in managing anime eccentric communities.
 """
