@@ -203,8 +203,8 @@ def start(update: Update, context: CallbackContext):
         else:
             first_name = update.effective_user.first_name
             update.effective_message.reply_text(                
-                PM_START_TEXT
-                ),
+                PM_START_TEXT,
+                
                 parse_mode=ParseMode.MARKDOWN,
                 disable_web_page_preview=True,
                 reply_markup=InlineKeyboardMarkup(
