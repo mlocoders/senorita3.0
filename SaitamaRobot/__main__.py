@@ -77,6 +77,31 @@ I am an Attack on Titan anime themed group management bot,
 Built by weebs for weebs, I specialize in managing anime eccentric communities.
 """
 
+buttons = [
+    [
+        InlineKeyboardButton(
+            text=" Add Me To Your Group", url="t.me/FoundingTitanRobot?startgroup=true"),
+    ],
+    [
+        InlineKeyboardButton(
+              text="Support ", url="https://t.me/Foundingtitansupport"),
+     
+    ],
+    [     InlineKeyboardButton(
+            text=" Nexus Network", url="https://t.me/Nexus_Network"),
+    
+    ],
+    [
+        InlineKeyboardButton(
+            text="Update Channel", url="https://t.me/FoundingTitanupdates"),
+    ],
+    [
+        InlineKeyboardButton(
+            text="Command & Help", callback_data="help_back",
+         ),
+    ],
+] 
+
 HELP_STRINGS = """
 Hey there, I'm Eren Jaeger!
 To make me functional, make sure that i have enough rights in your group.
@@ -201,51 +226,12 @@ def start(update: Update, context: CallbackContext):
                 IMPORTED["rules"].send_rules(update, args[0], from_pm=True)
 
         else:
-            first_name = update.effective_user.first_name
-            update.effective_message.reply_text(                
+            update.effective_message.reply_text(
                 PM_START_TEXT,
-                
+                reply_markup=InlineKeyboardMarkup(buttons),
                 parse_mode=ParseMode.MARKDOWN,
-                disable_web_page_preview=True,
-                reply_markup=InlineKeyboardMarkup(
-                    [
-                        [
-                            InlineKeyboardButton(
-                                text="➕ Add Eren Jaeger to your group!",
-                                url="t.me/{}?startgroup=true".format(
-                                    context.bot.username,
-                                ),
-                            ),
-                        ],
-                        [
-                            InlineKeyboardButton(
-                                text="🗣️ Support",
-                                url=f"https://t.me/{SUPPORT_CHAT}",
-                            ),
-                            InlineKeyboardButton(
-                                text="🔔 Updates",
-                                url="https://t.me/foundingtitanupdates/",
-                            ),
-                        ],
-                        [
-                            InlineKeyboardButton(
-                                text="📋 Getting Started",
-                                url="https://t.me/foundingtitanupdates/4",
-                            ),
-                            InlineKeyboardButton(
-                                text="🌐 Nexus Network™",
-                                url="https://t.me/Nexus_Network/",
-                            ),
-                        ],
-                        [
-                            InlineKeyboardButton(
-                                text="⚙️ Help and Commands ",
-                                url="https://t.me/FoundingTitanRobot?start=help",
-                            ),
-                        ],
-                    ],
-                ),
-            )
+                timeout=60,
+            )                                
     else:
         update.effective_message.reply_text(
             "I'm awake already!\n<b>Haven't slept since:</b> <code>{}</code>".format(
