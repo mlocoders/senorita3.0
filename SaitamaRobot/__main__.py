@@ -80,9 +80,9 @@ Built by weebs for weebs, I specialize in managing anime eccentric communities.
 buttons = [
     [
         InlineKeyboardButton(
-            text=" ➕ Add Me", url="t.me/FoundingTitanRobot?startgroup=true"),    
+            text="➕ Add Me", url="t.me/FoundingTitanRobot?startgroup=true"),    
         InlineKeyboardButton(
-              text="Help", callback_data="help_back"),   
+              text="⚙️ Help", callback_data="help_back"),   
    ],
     [      
        InlineKeyboardButton(
