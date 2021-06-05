@@ -80,20 +80,14 @@ Built by weebs for weebs, I specialize in managing anime eccentric communities.
 buttons = [
     [
         InlineKeyboardButton(
-            text=" Add Me To Your Group", url="t.me/FoundingTitanRobot?startgroup=true"),
-    ],
-    [
+            text=" Add Me To Your Group", url="t.me/FoundingTitanRobot?startgroup=true"),    
         InlineKeyboardButton(
-              text="Support ", url="https://t.me/Foundingtitansupport"),
-     
-    ],
-    [     InlineKeyboardButton(
+              text="Support ", url="https://t.me/Foundingtitansupport"),     
+         InlineKeyboardButton(
             text=" Nexus Network", url="https://t.me/Nexus_Network"),        
           InlineKeyboardButton(
-            text="Update Channel", url="https://t.me/FoundingTitanupdates"),
-    ],
-    [
-        InlineKeyboardButton(
+            text="Update Channel", url="https://t.me/FoundingTitanupdates"),    
+          InlineKeyboardButton(
             text="Command & Help", callback_data="help_back",
          ),
     ],
