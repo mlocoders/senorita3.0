@@ -88,11 +88,8 @@ buttons = [
      
     ],
     [     InlineKeyboardButton(
-            text=" Nexus Network", url="https://t.me/Nexus_Network"),
-    
-    ],
-    [
-        InlineKeyboardButton(
+            text=" Nexus Network", url="https://t.me/Nexus_Network"),        
+          InlineKeyboardButton(
             text="Update Channel", url="https://t.me/FoundingTitanupdates"),
     ],
     [
