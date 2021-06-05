@@ -72,10 +72,34 @@ def get_readable_time(seconds: int) -> str:
 
 
 PM_START_TEXT = """
- Hi {}, I'm {}!
+ Hey `there`, I'm [Eren Jaeger](https://telegra.ph/file/06355bb1cd9d0c53d1171.jpg)
 I am an Attack on Titan anime themed group management bot,
 Built by weebs for weebs, I specialize in managing anime eccentric communities.
 """
+
+buttons = [
+    [
+        InlineKeyboardButton(
+            text=" ➕ Add Me", url="t.me/FoundingTitanRobot?startgroup=true"),    
+        InlineKeyboardButton(
+              text="Help", callback_data="help_back"),   
+   ],
+    [      
+       InlineKeyboardButton(
+            text="📖 Quick Setup", url="https://t.me/foundingtitanupdates/4"),        
+          InlineKeyboardButton(
+            text="📋 ChangeLogs", url="https://t.me/FoundingTitanupdates"),
+    
+   ],
+    [      
+          InlineKeyboardButton(
+            text="🗣️ Support", url="https://t.me/Foundingtitansupport"),
+          InlineKeyboardButton(
+            text="🌐 Nexus Network", url="https://t.me/Nexus_Network",
+    
+         ),
+    ],
+] 
 
 HELP_STRINGS = """
 Hey there, I'm Eren Jaeger!
@@ -95,7 +119,6 @@ List of all the Modules:
     "" if not ALLOW_EXCL else "📝All commands can either be used with / or !.",
 )
 
-EREN_IMG = "https://telegra.ph/file/06355bb1cd9d0c53d1171.jpg"
 
 DONATE_STRING = """Plant a tree and give water to birds, that's your donation.."""
 
@@ -202,53 +225,12 @@ def start(update: Update, context: CallbackContext):
                 IMPORTED["rules"].send_rules(update, args[0], from_pm=True)
 
         else:
-            first_name = update.effective_user.first_name
-            update.effective_message.reply_photo(
-                EREN_IMG,
-                PM_START_TEXT.format(
-                    escape_markdown(first_name), escape_markdown(context.bot.first_name),
-                ),
+            update.effective_message.reply_text(
+                PM_START_TEXT,
+                reply_markup=InlineKeyboardMarkup(buttons),
                 parse_mode=ParseMode.MARKDOWN,
-                disable_web_page_preview=True,
-                reply_markup=InlineKeyboardMarkup(
-                    [
-                        [
-                            InlineKeyboardButton(
-                                text="➕ Add Eren Jaeger to your group!",
-                                url="t.me/{}?startgroup=true".format(
-                                    context.bot.username,
-                                ),
-                            ),
-                        ],
-                        [
-                            InlineKeyboardButton(
-                                text="🗣️ Support",
-                                url=f"https://t.me/{SUPPORT_CHAT}",
-                            ),
-                            InlineKeyboardButton(
-                                text="🔔 Updates",
-                                url="https://t.me/foundingtitanupdates/",
-                            ),
-                        ],
-                        [
-                            InlineKeyboardButton(
-                                text="📋 Getting Started",
-                                url="https://t.me/foundingtitanupdates/4",
-                            ),
-                            InlineKeyboardButton(
-                                text="🌐 Nexus Network™",
-                                url="https://t.me/Nexus_Network/",
-                            ),
-                        ],
-                        [
-                            InlineKeyboardButton(
-                                text="⚙️ Help and Commands ",
-                                url="https://t.me/FoundingTitanRobot?start=help",
-                            ),
-                        ],
-                    ],
-                ),
-            )
+                timeout=60,
+            )                                
     else:
         update.effective_message.reply_text(
             "I'm awake already!\n<b>Haven't slept since:</b> <code>{}</code>".format(
