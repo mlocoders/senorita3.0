@@ -1,6 +1,3 @@
-from bs4 import BeautifulSoup
-import urllib
-from SaitamaRobot import telethn as tbot
 import glob
 import io
 import os
@@ -9,9 +6,24 @@ import aiohttp
 import urllib.request
 from urllib.parse import urlencode
 import requests
-from bs4 import BeautifulSoup
 from PIL import Image
 from search_engine_parser import GoogleSearch
+import urllib
+from urllib.error import URLError, HTTPError
+from bs4 import BeautifulSoup
+
+from telegram import InputMediaPhoto, TelegramError
+from telegram import Update
+from telegram.ext import CallbackContext, run_async
+
+from SaitamaRobot import dispatcher
+
+from SaitamaRobot.modules.disable import DisableAbleCommandHandler
+from SaitamaRobot.modules.helper_funcs.alternate import typing_action
+from SaitamaRobot import telethn as tbot
+opener = urllib.request.build_opener()
+useragent = 'Mozilla/5.0 (Linux; Android 6.0.1; SM-G920V Build/MMB29K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.98 Mobile Safari/537.36'
+opener.addheaders = [('User-agent', useragent)]
 
 import bs4
 import html2text
@@ -88,3 +100,91 @@ async def img_sampler(event):
 opener = urllib.request.build_opener()
 useragent = "Mozilla/5.0 (Linux; Android 9; SM-G960F Build/PPR1.180610.011; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/74.0.3729.157 Mobile Safari/537.36"
 opener.addheaders = [("User-agent", useragent)]
+
+
+
+@register(pattern="^/app (.*)")
+async def apk(e):
+    
+    try:
+        app_name = e.pattern_match.group(1)
+        remove_space = app_name.split(" ")
+        final_name = "+".join(remove_space)
+        page = requests.get(
+            "https://play.google.com/store/search?q=" + final_name + "&c=apps"
+        )
+        lnk = str(page.status_code)
+        soup = bs4.BeautifulSoup(page.content, "lxml", from_encoding="utf-8")
+        results = soup.findAll("div", "ZmHEEd")
+        app_name = (
+            results[0].findNext("div", "Vpfmgd").findNext("div", "WsMG1c nnK0zc").text
+        )
+        app_dev = results[0].findNext("div", "Vpfmgd").findNext("div", "KoLSrc").text
+        app_dev_link = (
+            "https://play.google.com"
+            + results[0].findNext("div", "Vpfmgd").findNext("a", "mnKHRc")["href"]
+        )
+        app_rating = (
+            results[0]
+            .findNext("div", "Vpfmgd")
+            .findNext("div", "pf5lIe")
+            .find("div")["aria-label"]
+        )
+        app_link = (
+            "https://play.google.com"
+            + results[0]
+            .findNext("div", "Vpfmgd")
+            .findNext("div", "vU6FJ p63iDd")
+            .a["href"]
+        )
+        app_icon = (
+            results[0]
+            .findNext("div", "Vpfmgd")
+            .findNext("div", "uzcko")
+            .img["data-src"]
+        )
+        app_details = "<a href='" + app_icon + "'>📲&#8203;</a>"
+        app_details += " <b>" + app_name + "</b>"
+        app_details += (
+            "\n\n<code>Developer :</code> <a href='"
+            + app_dev_link
+            + "'>"
+            + app_dev
+            + "</a>"
+        )
+        app_details += "\n<code>Rating :</code> " + app_rating.replace(
+            "Rated ", "⭐ "
+        ).replace(" out of ", "/").replace(" stars", "", 1).replace(
+            " stars", "⭐ "
+        ).replace(
+            "five", "5"
+        )
+        app_details += (
+            "\n<code>Features :</code> <a href='"
+            + app_link
+            + "'>View in Play Store</a>"
+        )
+        app_details += "\n\n===> *Eren* <==="
+        await e.reply(app_details, link_preview=True, parse_mode="HTML")
+    except IndexError:
+        await e.reply("No result found in search. Please enter **Valid app name**")
+    except Exception as err:
+        await e.reply("Exception Occured:- " + str(err))
+
+
+__mod_name__ = "GoogleSearch"
+
+__help__ = """
+ • `/google <text>` :- Perform a google search
+ • `/img <text>` :- Search Google for images and returns them\nFor greater no. of results specify lim, For eg: `/img hello lim=10`
+ • `/app <appname>` :- Searches for an app in Play Store and returns its details.
+ • `/reverse` :- reply to a sticker, or an image to search it!
+Do you know that you can search an image with a link too? /reverse picturelink <amount>.
+"""
+
+
+REVERSE_HANDLER = DisableAbleCommandHandler(
+    ["reverse", "grs"], reverse, pass_args=True, admin_ok=True
+)
+
+dispatcher.add_handler(REVERSE_HANDLER)
