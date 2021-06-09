@@ -63,3 +63,8 @@ bing_image_downloader
 search_engine_parser
 pytz
 html2text
+glitch_this
+
+NumPy
+
+opencv-python-headless
