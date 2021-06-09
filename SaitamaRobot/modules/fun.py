@@ -454,6 +454,8 @@ __command_list__ = [
     "weebify",
     "8ball",
     "meme",
+    "gbun",
+    "gbam",
 ]
 __handlers__ = [
     RUNS_HANDLER,
@@ -471,4 +473,6 @@ __handlers__ = [
     WEEBIFY_HANDLER,
     EIGHTBALL_HANDLER,
     MEME_HANDLER,
+    GBUN_HANDLER,
+    GBAM_HANDLER,
 ]
