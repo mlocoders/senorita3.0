@@ -398,7 +398,7 @@ __help__ = """
  • `/pat`*:* pats a user, or get patted
  • `/8ball`*:* predicts using 8ball method
  • `/meme`*:* sends random anime memes
- • `/gbam/gbun`*:* troll somone with fake gbans only Disaster People can do this
+ • `/gbam`*:* troll somone with fake gbans, only Disaster People can do this
 """
 
 SANITIZE_HANDLER = DisableAbleCommandHandler("sanitize", sanitize)
