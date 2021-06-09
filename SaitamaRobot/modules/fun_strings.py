@@ -475,4 +475,10 @@ GBAM_REASON = (
     "sasti ria chokroborti",
     "sasti nibbi",
     "sasta camper",
+    "sasta pubji mobeil player",
+    "Aine me khudko dekh ke hilane wala",
+    "Bts ka choda",
+    "Kabhi Kabhi lagta he apun hi bhagwan he",
+    "Aise hi sexy lag raha tha",
+    "Eminem ka choda",
 )
