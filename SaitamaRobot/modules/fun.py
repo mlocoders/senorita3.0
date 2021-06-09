@@ -352,7 +352,7 @@ def gbun(update, context):
     if update.effective_message.chat.type == "private":
         return
     if int(user.id) in DRAGONS or int(user.id) in DEMONS:
-        context.bot.sendMessage(chat.id, (random.choice(fun.GBUN)))
+        context.bot.sendMessage(chat.id, (random.choice(fun_strings.GBUN)))
 
 
 @run_async
@@ -378,7 +378,7 @@ def gbam(update, context):
         return
     if int(user.id) in DRAGONS or int(user.id) in DEMONS:
         gbamm = fun.GBAM
-        reason = random.choice(fun.GBAM_REASON)
+        reason = random.choice(fun_strings.GBAM_REASON)
         gbam = gbamm.format(user1=user1, user2=user2, chatid=chat.id, reason=reason)
         context.bot.sendMessage(chat.id, gbam, parse_mode=ParseMode.HTML)
 
