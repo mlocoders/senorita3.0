@@ -1,12 +1,11 @@
 import html
-
 import random
-
 import time
 
 from telegram import ParseMode, Update, ChatPermissions
 from telegram.ext import CallbackContext, run_async
 from telegram.error import BadRequest
+
 import SaitamaRobot.modules.animequotes_strings as animequotes_strings
 from SaitamaRobot import dispatcher
 from SaitamaRobot.modules.disable import DisableAbleCommandHandler
