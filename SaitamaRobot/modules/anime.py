@@ -532,20 +532,35 @@ def kayo(update: Update, context: CallbackContext):
 
 
 __help__ = """
-Get information about anime, manga or characters from [AniList](anilist.co).
+Get information about anime, manga or characters from [AniList](anilist.co) and [MAL](https://myanimelist.net/)
 
-*Available commands:*
+*AniList Commands:*
 
- • `/anime <anime>`*:* returns information about the anime.
- • `/character <character>`*:* returns information about the character.
- • `/manga <manga>`*:* returns information about the manga.
- • `/user <user>`*:* returns information about a MyAnimeList user.
- • `/upcoming`*:* returns a list of new anime in the upcoming seasons.
- • `/kaizoku <anime>`*:* search an anime on animekaizoku.com
- • `/kayo <anime>`*:* search an anime on animekayo.com
- • `/airing <anime>`*:* returns anime airing info.
+ • `/anime <anime>`*:* returns information about the anime from AniList
+ • `/character <character>`*:* returns information about the character from AniList
+ • `/manga <manga>`*:* returns information about the manga from AniList
+ • `/upcoming`*:* returns a list of new anime in the upcoming seasons from AniList
+ • `/airing <anime>`*:* returns anime airing info from AniList
+ 
+*MyAnimelist Commands*
 
- """
+ • `/manime <anime>`*:* returns information about the anime MAL.
+ • `/mcharacter` <character>*:* returns information about the character from MAL.
+ • `/mmanga <manga>`*:* returns information about the manga from MAL.
+ • `/mupcoming`*:* returns a list of new anime in the upcoming seasons from MAL.
+ • `/user <user>`*:* returns information about a MyAnimeList user
+ • `/animequotes`*:* sends random anime quotes
+
+*Anime Search Commands*
+
+• `/kayo`*:* search an Anime on (AnimeKayo)[http://animekayo.com]
+• `kaizoku`*:* search an Anime on (AnimeKaizoku)[http://animekaizoku.com]
+• `/whatanime`*:* Please reply to a Gif or Photo or Video,
+You saw a good anime video, photo, gif but dont know what is that anime's name?
+This is where whatanime comes in, just reply to that media with /whatanime and it will search the anime name for you from anilist.
+
+"""
+
 
 ANIME_HANDLER = DisableAbleCommandHandler("anime", anime)
 AIRING_HANDLER = DisableAbleCommandHandler("airing", airing)
@@ -572,9 +587,9 @@ __command_list__ = [
     "character",
     "user",
     "upcoming",
-    "kaizoku",
     "airing",
     "kayo",
+    "kaizoku",
 ]
 __handlers__ = [
     ANIME_HANDLER,
@@ -582,7 +597,7 @@ __handlers__ = [
     MANGA_HANDLER,
     USER_HANDLER,
     UPCOMING_HANDLER,
-    KAIZOKU_SEARCH_HANDLER,
     KAYO_SEARCH_HANDLER,
     AIRING_HANDLER,
+    KAIZOKU_SEARCH_HANDLER
 ]
