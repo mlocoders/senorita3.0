@@ -542,7 +542,7 @@ Get information about anime, manga or characters from [AniList](anilist.co) and 
  • `/upcoming`*:* returns a list of new anime in the upcoming seasons from AniList
  • `/airing <anime>`*:* returns anime airing info from AniList
  
-*MyAnimelist Commands*
+*MyAnimelist Commands:*
 
  • `/manime <anime>`*:* returns information about the anime MAL.
  • `/mcharacter` <character>*:* returns information about the character from MAL.
@@ -551,10 +551,10 @@ Get information about anime, manga or characters from [AniList](anilist.co) and 
  • `/user <user>`*:* returns information about a MyAnimeList user
  • `/animequotes`*:* sends random anime quotes
 
-*Anime Search Commands*
+*Anime Search Commands:*
 
-• `/kayo`*:* search an Anime on (AnimeKayo)[http://animekayo.com]
-• `kaizoku`*:* search an Anime on (AnimeKaizoku)[http://animekaizoku.com]
+• `/kayo`*:* search an Anime on AnimeKayo website
+• `kaizoku`*:* search an Anime on AnimeKaizoku website
 • `/whatanime`*:* Please reply to a Gif or Photo or Video,
 You saw a good anime video, photo, gif but dont know what is that anime's name?
 This is where whatanime comes in, just reply to that media with /whatanime and it will search the anime name for you from anilist.
