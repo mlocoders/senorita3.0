@@ -152,7 +152,7 @@ async def get_sticker_emoji(event):
         final_emoji = "🌏"
     return final_emoji
 
-@run_async
+
 @Eren(pattern="^/kang ?(.*)")
 async def _(event):
     if not event.is_reply:
@@ -171,7 +171,7 @@ async def _(event):
     first_name = user.first_name
     packname = f"{first_name}'s Sticker Vol.{pack}"
     packshortname = f"Eren_stickers_{userid}"
-    kanga = await event.reply("Hello, This Sticker Looks Noice. Mind if {first_name} steal it")
+    kanga = await event.reply("Hello, This Sticker Looks Noice. Mind if I steal it")
     is_a_s = is_it_animated_sticker(reply_message)
     file_ext_ns_ion = "Stickers.png"
     file = await event.client.download_file(reply_message.media)
