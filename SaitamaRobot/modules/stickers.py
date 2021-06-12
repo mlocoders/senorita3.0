@@ -1,3 +1,6 @@
+#kang is ported from DaisyX full credits goes to them
+
+
 import datetime
 import io
 import os
@@ -187,7 +190,7 @@ async def get_sticker_emoji(event):
 @Eren(pattern="^/kang ?(.*)")
 async def _(event):
     if not event.is_reply:
-        await event.reply("PLease, Reply To A Sticker / Image to kang it")
+        await event.reply("I can Only Kang images and stickers mate")
         return
     reply_message = await event.get_reply_message()
     sticker_emoji = await get_sticker_emoji(event)
@@ -202,7 +205,7 @@ async def _(event):
     first_name = user.first_name
     packname = f"{first_name}'s Sticker Vol.{pack}"
     packshortname = f"Eren_stickers_{userid}"
-    kanga = await event.reply("Hello, This Sticker Looks Noice. Mind if I steal it")
+    kanga = await event.reply("Hello, This Sticker Looks Noice. Mind if I steal it?")
     is_a_s = is_it_animated_sticker(reply_message)
     file_ext_ns_ion = "Stickers.png"
     file = await event.client.download_file(reply_message.media)
@@ -223,7 +226,7 @@ async def _(event):
                 sticker, file_name=file_ext_ns_ion
             )
 
-    await kanga.edit("This Sticker is Gonna Get Stolen.....")
+    await kanga.edit("Proccessing Stealing the sticker with blek mejik")
 
     async with ubot.conversation("@Stickers") as d_conv:
         now = datetime.datetime.now()
@@ -360,9 +363,9 @@ async def _(event):
                 await silently_send_message(d_conv, response)
                 await silently_send_message(d_conv, sticker_emoji)
                 await silently_send_message(d_conv, "/done")
-    await kanga.edit("Inviting This Sticker To Your Pack 🚶")
+    await kanga.edit("Almost Done stealing...")
     await kanga.edit(
-        f" Sticker Successfully ` \n**Check It Out** [Here](t.me/addstickers/{packshortname})"
+        f" Successfully kanged the sticker to your [pack](t.me/addstickers/{packshortname})"
     )
     os.system("rm -rf  Stickers.png")
     os.system("rm -rf  AnimatedSticker.tgs")
