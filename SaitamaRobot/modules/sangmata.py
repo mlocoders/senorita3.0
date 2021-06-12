@@ -1,8 +1,15 @@
+# Copyright (C) 2021 AsunaRobot
+# made by @The_Ghost_Hunter on Telegram. 
+# github account : https://github.com/HuntingBots/
+# This file is part of AsunaRobot (Telegram Bot)
+
+import datetime 
+import asyncio
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 from telethon.tl import functions, types
 
 from SaitamaRobot.events import register as Eren
-from SaitamaRobot import telethn as tbot
+from SaitamaRobot import telethn 
 from SaitamaRobot.utils.telethonub import ubot
 
 
@@ -12,15 +19,15 @@ async def is_register_admin(chat, user):
 
         return isinstance(
             (
-                await tbot(functions.channels.GetParticipantRequest(chat, user))
+                await telethn(functions.channels.GetParticipantRequest(chat, user))
             ).participant,
             (types.ChannelParticipantAdmin, types.ChannelParticipantCreator),
         )
     if isinstance(chat, types.InputPeerChat):
 
-        ui = await tbot.get_peer_id(user)
+        ui = await telethn.get_peer_id(user)
         ps = (
-            await tbot(functions.messages.GetFullChatRequest(chat.chat_id))
+            await telethn(functions.messages.GetFullChatRequest(chat.chat_id))
         ).full_chat.participants.participants
         return isinstance(
             next((p for p in ps if p.user_id == ui), None),
@@ -95,7 +102,7 @@ async def _(event):
         # await lol.edit(f"{response.message.message}")
 
 __help__ = """
- • `/sg` <reply to an user>:- Get Name history of an User.
+  • /sg*:* Get  Name History Of User
 """
 
-__mod_name__ = "SangMata"
+__mod_name__ = "Sangmata"

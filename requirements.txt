@@ -66,3 +66,6 @@ html2text
 glitch_this
 NumPy
 opencv-python-headless
+aiogram
+aiofiles
+aiocron
