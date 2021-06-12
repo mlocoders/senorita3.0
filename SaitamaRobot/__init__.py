@@ -103,7 +103,13 @@ if ENV:
     ARQ_API_KEY = ARQ_API
     
 
-    ALLOW_CHATS = os.environ.get("ALLOW_CHATS", True)
+       ALLOW_CHATS = os.environ.get("ALLOW_CHATS", True)
+    
+#-----------------------------------------------AsunaRobot/services/telethonuserbot.py (ENV)-------------------------------------------------------    
+    STRING_SESSION = os.environ.get("STRING_SESSION", True)
+    APP_ID = os.environ.get("APP_ID", True)
+    APP_HASH = os.environ.get("APP_HASH", True)
+#------------------------------------------------------------------------------------------------------------------------------
 
     try:
         BL_CHATS = set(int(x) for x in os.environ.get("BL_CHATS", "").split())
