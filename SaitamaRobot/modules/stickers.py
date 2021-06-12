@@ -83,7 +83,7 @@ def kang(update: Update, context: CallbackContext):
     user = update.effective_user
     args = context.args
     packnum = 0
-    packname = "a" + str(user.id) + "_by_" + context.bot.first_name
+    packname = "a" + str(user.id) + "_by_" + context.bot.username
     packname_found = 0
     max_stickers = 120
     while packname_found == 0:
@@ -97,7 +97,7 @@ def kang(update: Update, context: CallbackContext):
                     + "_"
                     + str(user.id)
                     + "_by_"
-                    + context.bot.first_name
+                    + context.bot.username
                 )
             else:
                 packname_found = 1
@@ -214,7 +214,7 @@ def kang(update: Update, context: CallbackContext):
                 print(e)
 
         else:
-            packname = "animated" + str(user.id) + "_by_" + context.bot.first_name
+            packname = "animated" + str(user.id) + "_by_" + context.bot.username
             packname_found = 0
             max_stickers = 50
             while packname_found == 0:
@@ -228,7 +228,7 @@ def kang(update: Update, context: CallbackContext):
                             + "_"
                             + str(user.id)
                             + "_by_"
-                            + context.bot.first_name
+                            + context.bot.username
                         )
                     else:
                         packname_found = 1
@@ -361,7 +361,7 @@ def kang(update: Update, context: CallbackContext):
     else:
         packs = "Please reply to a sticker, or image to kang it!\nOh, by the way. here are your packs:\n"
         if packnum > 0:
-            firstpackname = "a" + str(user.id) + "_by_" + context.bot.first_name
+            firstpackname = "a" + str(user.id) + "_by_" + context.bot.username
             for i in range(0, packnum + 1):
                 if i == 0:
                     packs += f"[pack](t.me/addstickers/{firstpackname})\n"
@@ -452,16 +452,16 @@ def makepack_internal(
 
 
 __help__ = """
- • `/stickerid` : reply to a sticker to me to tell you its file ID.
- • `/getsticker` : reply to a sticker to me to upload its raw PNG file.
- • `/kang` : reply to a sticker to add it to your pack.
- • `/stickers` : Find stickers for given term on combot sticker catalogue
+ ❍ /stickerid*:* reply to a sticker to me to tell you its file ID.
+ ❍ /getsticker*:* reply to a sticker to me to upload its raw PNG file.
+ ❍ /kang*:* reply to a sticker to add it to your pack.
+ ❍ /stickers*:* Find stickers for given term on combot sticker catalogue
 """
 
 __mod_name__ = "Stickers"
 STICKERID_HANDLER = DisableAbleCommandHandler("stickerid", stickerid)
 GETSTICKER_HANDLER = DisableAbleCommandHandler("getsticker", getsticker)
-KANG_HANDLER = DisableAbleCommandHandler(["kang", "steal"], kang, admin_ok=True)
+KANG_HANDLER = DisableAbleCommandHandler("kang", kang, admin_ok=True)
 STICKERS_HANDLER = DisableAbleCommandHandler("stickers", cb_sticker)
 
 dispatcher.add_handler(STICKERS_HANDLER)
