@@ -83,7 +83,7 @@ def kang(update: Update, context: CallbackContext):
     user = update.effective_user
     args = context.args
     packnum = 0
-    packname = "a" + str(user.id) + "_by_" + context.bot.username
+    packname = f"ult_(user.id)_(packnum)
     packname_found = 0
     max_stickers = 120
     while packname_found == 0:
@@ -92,12 +92,12 @@ def kang(update: Update, context: CallbackContext):
             if len(stickerset.stickers) >= max_stickers:
                 packnum += 1
                 packname = (
-                    "a"
-                    + str(packnum)
-                    + "_"
-                    + str(user.id)
-                    + "_by_"
-                    + context.bot.username
+                    "f"
+                    + ult
+                    + _
+                    + (user.id)
+                    + _
+                    + (packnum)
                 )
             else:
                 packname_found = 1
@@ -452,10 +452,10 @@ def makepack_internal(
 
 
 __help__ = """
- ❍ /stickerid*:* reply to a sticker to me to tell you its file ID.
- ❍ /getsticker*:* reply to a sticker to me to upload its raw PNG file.
- ❍ /kang*:* reply to a sticker to add it to your pack.
- ❍ /stickers*:* Find stickers for given term on combot sticker catalogue
+  /stickerid*:* reply to a sticker to me to tell you its file ID.
+  /getsticker*:* reply to a sticker to me to upload its raw PNG file.
+  /kang*:* reply to a sticker to add it to your pack.
+  /stickers*:* Find stickers for given term on combot sticker catalogue
 """
 
 __mod_name__ = "Stickers"
