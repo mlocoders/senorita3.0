@@ -8,15 +8,15 @@ import asyncio
 from telethon.errors.rpcerrorlist import YouBlockedUserError
 from telethon.tl import functions, types
 
-from SaitamaRobot.events import register as Eren
+from SaitamaRobot.events import register
 from SaitamaRobot import telethn 
-from SaitamaRobot.utils.telethonub import ubot
+from SaitamaRobot.services.telethonuserbot import ubot
 
 
 async def is_register_admin(chat, user):
 
     if isinstance(chat, (types.InputPeerChannel, types.InputChannel)):
-
+ 
         return isinstance(
             (
                 await telethn(functions.channels.GetParticipantRequest(chat, user))
@@ -43,7 +43,7 @@ async def silently_send_message(conv, text):
     return response
 
 
-@Eren(pattern="^/sg ?(.*)")
+@register(pattern="^/sg ?(.*)")
 async def _(event):
 
     if event.fwd_from:
@@ -102,7 +102,7 @@ async def _(event):
         # await lol.edit(f"{response.message.message}")
 
 __help__ = """
-  • /sg*:* Get  Name History Of User
+  • /sg*:* Get A Name History Of User
 """
 
 __mod_name__ = "Sangmata"
