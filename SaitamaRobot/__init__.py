@@ -5,6 +5,8 @@ import time
 import spamwatch
 from pyrogram import Client, errors
 import telegram.ext as tg
+from aiogram import Bot, Dispatcher, types
+from aiogram.bot.api import TELEGRAM_PRODUCTION, TelegramAPIServer
 from telethon import TelegramClient
 from motor import motor_asyncio
 from odmantic import AIOEngine
@@ -227,6 +229,10 @@ aiohttpsession = ClientSession()
 # ARQ Client
 print("[INFO]: INITIALIZING ARQ CLIENT")
 arq = ARQ(ARQ_API_URL, ARQ_API_KEY, aiohttpsession)
+server = TELEGRAM_PRODUCTION
+# AIOGram
+print("[EREN]: INSTALLING AIOGRAM")
+bot = Bot(token=TOKEN, parse_mode=types.ParseMode.HTML, server=server)
 
 DRAGONS = list(DRAGONS) + list(DEV_USERS)
 DEV_USERS = list(DEV_USERS)
