@@ -97,7 +97,7 @@ def kang(update: Update, context: CallbackContext):
                     + "_"
                     + str(user.id)
                     + "_by_"
-                    + context.bot.name
+                    + context.bot.first_name
                 )
             else:
                 packname_found = 1
