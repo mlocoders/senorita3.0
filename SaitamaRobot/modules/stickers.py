@@ -25,7 +25,7 @@ from telegram.utils.helpers import mention_html
 from SaitamaRobot import dispatcher
 from SaitamaRobot.modules.disable import DisableAbleCommandHandler
 from SaitamaRobot.utils.telethonub import ubot
-from SaitamaRobot.events import register as eren
+from SaitamaRobot.events import register as Eren
 from SaitamaRobot import telethn as tbot
 
 combot_stickers_url = "https://combot.org/telegram/stickers?q="
@@ -152,7 +152,7 @@ async def get_sticker_emoji(event):
         final_emoji = "🌏"
     return final_emoji
 
-
+@run_async
 @Eren(pattern="^/kang ?(.*)")
 async def _(event):
     if not event.is_reply:
