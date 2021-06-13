@@ -320,6 +320,7 @@ async def _(event):
                             )
                             return
                         await silently_send_message(d_conv, sticker_emoji)
+                        await silently_send_message(d_conv, "💫")
                         await silently_send_message(d_conv, "/publish")
                         response = await silently_send_message(
                             bot_conv, f"<{packname}>"
