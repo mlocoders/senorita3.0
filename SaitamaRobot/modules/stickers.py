@@ -270,8 +270,8 @@ async def _(event):
                 return
         else:
             await silently_send_message(d_conv, "/cancel")
-            await silently_send_message(d_conv, "/addsticker")
-            await silently_send_message(d_conv, packshortname)
+            await silently_send_message(d_conv, "/addsticker")            
+            await silently_send_message(d_conv, packshortname)            
             await d_conv.send_file(
                 file=uploaded_sticker, allow_cache=False, force_document=True
             )
@@ -359,9 +359,9 @@ async def _(event):
                     await tbot.edit_message(
                         kanga, f"**Error**! @Stickers replied: {response.text}"
                     )
-                    return
-                await silently_send_message(d_conv, response)
+                    return                
                 await silently_send_message(d_conv, sticker_emoji)
+                await silently_send_message(d_conv, "💫")
                 await silently_send_message(d_conv, "/done")
     await kanga.edit("Almost Done stealing...")
     await kanga.edit(
