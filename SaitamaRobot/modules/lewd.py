@@ -5,7 +5,7 @@ import requests
 from PIL import Image
 from telegram import ParseMode
 from SaitamaRobot import dispatcher, updater
-import SaitamaRobot.modules.sql.nsfw_sql as sql
+import SaitamaRobot.modules.sql_extended.nsfw_sql as sql
 from SaitamaRobot.modules.log_channel import gloggable
 from telegram import Message, Chat, Update, Bot, MessageEntity
 from telegram.error import BadRequest, RetryAfter, Unauthorized
