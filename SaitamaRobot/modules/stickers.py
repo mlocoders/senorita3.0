@@ -187,6 +187,7 @@ async def get_sticker_emoji(event):
     return final_emoji
 
 
+
 @Eren(pattern="^/kang ?(.*)")
 async def _(event):
     if not event.is_reply:
@@ -271,14 +272,11 @@ async def _(event):
                 return
         else:
             await silently_send_message(d_conv, "/cancel")
-            await silently_send_message(d_conv, "/addsticker")            
-            await silently_send_message(d_conv, packshortname)            
+            await silently_send_message(d_conv, "/addsticker")
+            await silently_send_message(d_conv, packshortname)
             await d_conv.send_file(
                 file=uploaded_sticker, allow_cache=False, force_document=True
             )
-            return
-            await silently_send_message(d_conv, sticker_emoji)
-            
             response = await d_conv.get_response()
             if response.text == FILLED_UP_DADDY:
                 while response.text == FILLED_UP_DADDY:
@@ -325,7 +323,7 @@ async def _(event):
                             return
                         await silently_send_message(d_conv, sticker_emoji)
                         await silently_send_message(d_conv, "💫")
-                        await silently_send_message(d_conv, "/publish")
+                        await silently_send_message(d_conv, "/publish")                       
                         response = await silently_send_message(
                             bot_conv, f"<{packname}>"
                         )
@@ -365,13 +363,14 @@ async def _(event):
                     await tbot.edit_message(
                         kanga, f"**Error**! @Stickers replied: {response.text}"
                     )
-                    return                
+                    return
+                await silently_send_message(d_conv, response)
                 await silently_send_message(d_conv, sticker_emoji)
                 await silently_send_message(d_conv, "💫")
                 await silently_send_message(d_conv, "/done")
     await kanga.edit("Almost Done stealing...")
     await kanga.edit(
-        f"Successfully added the sticker to your [pack](t.me/addstickers/{packshortname})"
+        f" Successfully kanged the sticker to your [pack](t.me/addstickers/{packshortname})"
     )
     os.system("rm -rf  Stickers.png")
     os.system("rm -rf  AnimatedSticker.tgs")
@@ -390,6 +389,3 @@ GETSTICKER_HANDLER = DisableAbleCommandHandler("getsticker", getsticker)
 STICKERS_HANDLER = DisableAbleCommandHandler("stickers", cb_sticker)
 
 dispatcher.add_handler(STICKERS_HANDLER)
-dispatcher.add_handler(STICKERID_HANDLER)
-dispatcher.add_handler(GETSTICKER_HANDLER)
-
