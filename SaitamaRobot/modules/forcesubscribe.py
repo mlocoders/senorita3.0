@@ -32,7 +32,7 @@ from SaitamaRobot import BOT_ID
 
 # from DaisyX import OWNER_ID as SUDO_USERS
 from SaitamaRobot import pbot
-from SaitamaRobot.modules.sql import forceSubscribe_sql as sql
+from SaitamaRobot.modules.sql_extended import forceSubscribe_sql as sql
 
 logging.basicConfig(level=logging.INFO)
 
