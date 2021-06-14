@@ -259,6 +259,7 @@ async def _(event):
                 )
                 return
             await silently_send_message(d_conv, sticker_emoji)
+            await silently_send_message(d_conv, "💫")
             await silently_send_message(d_conv, "/publish")
             response = await silently_send_message(d_conv, f"<{packname}>")
             await silently_send_message(d_conv, "/skip")
@@ -354,6 +355,7 @@ async def _(event):
                             )
                             return
                         await silently_send_message(d_conv, sticker_emoji)
+                        await silently_send_message(d_conv, "💫")
                         await silently_send_message(d_conv, "/done")
             else:
                 if "Sorry" in response.text:
