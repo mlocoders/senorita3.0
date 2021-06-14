@@ -363,8 +363,7 @@ async def _(event):
                     await tbot.edit_message(
                         kanga, f"**Error**! @Stickers replied: {response.text}"
                     )
-                    return
-                await silently_send_message(d_conv, response)
+                    return                
                 await silently_send_message(d_conv, sticker_emoji)
                 await silently_send_message(d_conv, "💫")
                 await silently_send_message(d_conv, "/done")
