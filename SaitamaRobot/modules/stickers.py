@@ -276,6 +276,9 @@ async def _(event):
             await d_conv.send_file(
                 file=uploaded_sticker, allow_cache=False, force_document=True
             )
+            return
+            await silently_send_message(d_conv, sticker_emoji)
+            
             response = await d_conv.get_response()
             if response.text == FILLED_UP_DADDY:
                 while response.text == FILLED_UP_DADDY:
@@ -368,7 +371,7 @@ async def _(event):
                 await silently_send_message(d_conv, "/done")
     await kanga.edit("Almost Done stealing...")
     await kanga.edit(
-        f" Successfully kanged the sticker to your [pack](t.me/addstickers/{packshortname})"
+        f"Successfully added the sticker to your [pack](t.me/addstickers/{packshortname})"
     )
     os.system("rm -rf  Stickers.png")
     os.system("rm -rf  AnimatedSticker.tgs")
