@@ -15,7 +15,7 @@ from telegram.utils.helpers import mention_html
 
 from SaitamaRobot import dispatcher
 from SaitamaRobot.modules.disable import DisableAbleCommandHandler
-from SaitamaRobot.events import register
+from SaitamaRobot.events import register as Eren
 from SaitamaRobot import LOGGER
 from SaitamaRobot import TEMP_DOWNLOAD_DIRECTORY
 from SaitamaRobot import telethn as bot
@@ -462,7 +462,7 @@ def makepack_internal(
 Credit = "This Plugin Made by Kittu (@A_viyu), if you're using this code in your bot. there is no issue but don't remove this line" 
 
 
-@register(pattern="^/mmf ?(.*)")
+@Eren(pattern="^/mmf ?(.*)")
 async def handler(event):
     if event.fwd_from:
         return
@@ -507,7 +507,7 @@ async def drawText(image_path, text):
     if os.name == "nt":
         fnt = "ariel.ttf"
     else:
-        fnt = "./SaitamaRobot/resources/TheConfessionFullRegular-8qGz.ttf"
+        fnt = "./SaitamaRobot/resources/Lucky-Boss.ttf"
     m_font = ImageFont.truetype(fnt, int((70 / 640) * i_width))
     if ";" in text:
         upper_text, lower_text = text.split(";")
