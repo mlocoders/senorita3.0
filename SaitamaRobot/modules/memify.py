@@ -6,14 +6,8 @@ import os
 
 from SaitamaRobot.events import register
 
-from SaitamaRobot import (
-
-    LOGGER,
-
-    TEMP_DOWNLOAD_DIRECTORY
-
-    )
-
+from SaitamaRobot import LOGGER
+from SaitamaRobot import TEMP_DOWNLOAD_DIRECTORY
 
 
 from SaitamaRobot import telethn as bot
