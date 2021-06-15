@@ -471,7 +471,7 @@ async def handler(event):
         return
     reply_message = await event.get_reply_message()
     if not reply_message.media:
-        await event.reply("```Reply to a image/sticker.```")
+        await event.reply("Reply to an image or a sticker.```")
         return
     file = await bot.download_media(reply_message)
     msg = await event.reply("Memifying this image! Please wait")
@@ -495,10 +495,6 @@ async def handler(event):
 # Taken from https://github.com/UsergeTeam/Userge-Plugins/blob/master/plugins/memify.py#L64
 # Maybe replyed to suit the needs of this module
 
-
-
-
-
 async def drawText(image_path, text):
     img = Image.open(image_path)
     os.remove(image_path)
@@ -507,7 +503,7 @@ async def drawText(image_path, text):
     if os.name == "nt":
         fnt = "ariel.ttf"
     else:
-        fnt = "./SaitamaRobot/resources/Lucky-Boss.ttf"
+        fnt = "./SaitamaRobot/resources/ArmWrestler.ttf"
     m_font = ImageFont.truetype(fnt, int((70 / 640) * i_width))
     if ";" in text:
         upper_text, lower_text = text.split(";")
