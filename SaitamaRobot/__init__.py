@@ -176,7 +176,7 @@ else:
     MONGO_DB = Config.MONGO_DB
     ARQ_API = Config.ARQ_API
     BOT_ID = Config.BOT_ID
-    
+    TEMP_DOWNLOAD_DIRECTORY = Config.TEMP_DOWNLOAD_DIRECTORY
 
     try:
         BL_CHATS = set(int(x) for x in Config.BL_CHATS or [])
