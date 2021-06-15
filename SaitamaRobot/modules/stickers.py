@@ -507,7 +507,7 @@ async def drawText(image_path, text):
     if os.name == "nt":
         fnt = "ariel.ttf"
     else:
-        fnt = "./SaitamaRobot/resources/Vampire_Wars.ttf"
+        fnt = "./SaitamaRobot/resources/TheConfessionFullRegular-8qGz.ttf"
     m_font = ImageFont.truetype(fnt, int((70 / 640) * i_width))
     if ";" in text:
         upper_text, lower_text = text.split(";")
@@ -584,12 +584,6 @@ async def drawText(image_path, text):
     webp_file = os.path.join(image_name)
     img.save(webp_file, "webp")
     return webp_file
-
-
-
-   
-
-
 
 
 
