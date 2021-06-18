@@ -3,10 +3,6 @@ from pyrogram import filters
 from SaitamaRobot import pbot as app
 from SaitamaRobot.utils.errors import capture_err
 
-__mod_name__ = "WebSS"
-__help__ = "`/webss` [URL] - Take A Screenshot Of A Webpage"
-
-
 @app.on_message(filters.command("webss"))
 @capture_err
 async def take_ss(_, message):
