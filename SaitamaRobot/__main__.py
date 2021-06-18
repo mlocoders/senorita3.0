@@ -100,7 +100,7 @@ buttons = [
           InlineKeyboardButton(
             text="🗣️ Support", url="https://t.me/Foundingtitansupport"),
           InlineKeyboardButton(
-            text="🌐 Nexus Network", callback_data="eren_",
+            text="🌐 Nexus Network", url="https://t.me/Nexus_Network",
     
          ),
     ],
@@ -363,14 +363,11 @@ def help_button(update, context):
 
 
 @run_async
-def eren_about_callback(update, context):
+def eren_data_callback(update, context):
     query = update.callback_query
     if query.data == "eren_":
         query.message.edit_text(
-            text="""I'm Eren Jaeger, a powerful group management bot built to help you manage your group easily.
-                 Im liscensed under the GNU General Public License v3.0_
-                 If you have any question about Me, let us know at @Foundingtitansupport .
-                 /n Powered By [Nexus Network](https://t.me/Nexus_Network)""",
+            text="""CallBackQueriesData Here""",
             parse_mode=ParseMode.MARKDOWN,
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup(
@@ -687,14 +684,14 @@ def main():
     settings_handler = CommandHandler("settings", get_settings)
     settings_callback_handler = CallbackQueryHandler(settings_button, pattern=r"stngs_")
 
-    about_callback_handler = CallbackQueryHandler(eren_about_callback, pattern=r"eren_")
+    data_callback_handler = CallbackQueryHandler(eren_data_callback, pattern=r"eren_")
     donate_handler = CommandHandler("donate", donate)
     migrate_handler = MessageHandler(Filters.status_update.migrate, migrate_chats)
 
     # dispatcher.add_handler(test_handler)
     dispatcher.add_handler(start_handler)
     dispatcher.add_handler(help_handler)
-    dispatcher.add_handler(about_callback_handler)
+    dispatcher.add_handler(data_callback_handler)
     dispatcher.add_handler(settings_handler)
     dispatcher.add_handler(help_callback_handler)
     dispatcher.add_handler(settings_callback_handler)
