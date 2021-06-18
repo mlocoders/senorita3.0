@@ -357,12 +357,12 @@ def eren_about_callback(update, context):
             reply_markup=InlineKeyboardMarkup(
                 [
                  [
-                    InlineKeyboardButton(text="Back", callback_data="saitama_back")
+                    InlineKeyboardButton(text="Back", callback_data="eren_back")
                  ]
                 ]
             ),
         )
-    elif query.data == "saitama_back":
+    elif query.data == "eren_back":
         query.message.edit_text(
                 PM_START_TEXT,
                 reply_markup=InlineKeyboardMarkup(buttons),
@@ -668,7 +668,7 @@ def main():
     settings_handler = CommandHandler("settings", get_settings)
     settings_callback_handler = CallbackQueryHandler(settings_button, pattern=r"stngs_")
 
-    about_callback_handler = CallbackQueryHandler(saitama_about_callback, pattern=r"eren_")
+    about_callback_handler = CallbackQueryHandler(eren_about_callback, pattern=r"eren_")
     donate_handler = CommandHandler("donate", donate)
     migrate_handler = MessageHandler(Filters.status_update.migrate, migrate_chats)
 
