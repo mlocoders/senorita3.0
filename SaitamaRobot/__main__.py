@@ -1,26 +1,50 @@
 import importlib
-import html
 import time
 import re
 from sys import argv
 from typing import Optional
 
-from SaitamaRobot import (ALLOW_EXCL, CERT_PATH, DONATION_LINK, LOGGER,
-                          OWNER_ID, PORT, SUPPORT_CHAT, TOKEN, URL, WEBHOOK,
-                          dispatcher, StartTime, telethn, updater, pbot)
+from SaitamaRobot import (
+    ALLOW_EXCL,
+    CERT_PATH,
+    DONATION_LINK,
+    LOGGER,
+    OWNER_ID,
+    PORT,
+    TOKEN,
+    URL,
+    WEBHOOK,
+    SUPPORT_CHAT,
+    dispatcher,
+    StartTime,
+    telethn,
+    updater,
+    pbot)
+
 # needed to dynamically load modules
 # NOTE: Module order is not guaranteed, specify that in the config file!
 from SaitamaRobot.modules import ALL_MODULES
 from SaitamaRobot.modules.helper_funcs.chat_status import is_user_admin
 from SaitamaRobot.modules.helper_funcs.misc import paginate_modules
-from telegram import (InlineKeyboardButton, InlineKeyboardMarkup, ParseMode,
-                      Update)
-from telegram.error import (BadRequest, ChatMigrated, NetworkError,
-                            TelegramError, TimedOut, Unauthorized)
-from telegram.ext import (CallbackContext, CallbackQueryHandler, CommandHandler,
-                          Filters, MessageHandler)
+from telegram import InlineKeyboardButton, InlineKeyboardMarkup, ParseMode, Update
+from telegram.error import (
+    BadRequest,
+    ChatMigrated,
+    NetworkError,
+    TelegramError,
+    TimedOut,
+    Unauthorized,
+)
+from telegram.ext import (
+    CallbackContext,
+    CallbackQueryHandler,
+    CommandHandler,
+    Filters,
+    MessageHandler,
+)
 from telegram.ext.dispatcher import DispatcherHandlerStop, run_async
 from telegram.utils.helpers import escape_markdown
+
 
 
 def get_readable_time(seconds: int) -> str:
@@ -76,7 +100,7 @@ buttons = [
           InlineKeyboardButton(
             text="🗣️ Support", url="https://t.me/Foundingtitansupport"),
           InlineKeyboardButton(
-            text="🌐 Nexus Network", url="https://t.me/Nexus_Network",
+            text="🌐 Nexus Network", callback_data="eren_",)
     
          ),
     ],
@@ -183,7 +207,7 @@ def start(update: Update, context: CallbackContext):
                     update.effective_chat.id,
                     HELPABLE[mod].__help__,
                     InlineKeyboardMarkup(
-                        [[InlineKeyboardButton(text="⬅️ BACK", callback_data="help_back")]]
+                        [[InlineKeyboardButton(text="Back", callback_data="help_back")]]
                     ),
                 )
 
@@ -344,15 +368,9 @@ def eren_about_callback(update, context):
     if query.data == "eren_":
         query.message.edit_text(
             text="""I'm Eren Jaeger, a powerful group management bot built to help you manage your group easily.
-                 \n I can restrict users.
-                 \n I can greet users with customizable welcome messages and even set a group's rules.
-                 \n I have an advanced anti-flood system.
-                 \n I can warn users until they reach max warns, with each predefined actions such as ban, mute, kick, etc.
-                 \n I have a note keeping system, blacklists, and even predetermined replies on certain keywords.
-                 \n I check for admins' permissions before executing any command and more stuffs
-                 \n\nEren is licensed under the GNU General Public License v3.0_
-                 \nIf you have any question about *Eren*, let us know at .
-                 \n *Powered By [Nexus Network*](https://t.me/Nexus_Network)""",
+                 Im liscensed under the GNU General Public License v3.0_
+                 If you have any question about Me, let us know at @Foundingtitansupport .
+                 /n Powered By [Nexus Network](https://t.me/Nexus_Network)""",
             parse_mode=ParseMode.MARKDOWN,
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup(
