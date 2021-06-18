@@ -442,11 +442,7 @@ def adminlist(update, context):
         for admin in custom_admin_list[admin_group]:
             text += "\n<code> • </code>{}".format(admin)
         text += "\n"
-
-    text += "\n🤖 Bots:"
-    for each_bot in bot_admin_list:
-        text += "\n<code> • </code>{}".format(each_bot)
-
+    
     try:
         msg.edit_text(text, parse_mode=ParseMode.HTML)
     except BadRequest:  # if original message is deleted
@@ -464,6 +460,9 @@ __help__ = """
  • `/demote`*:* demotes the user replied to
  • `/title <title here>`*:* sets a custom title for an admin that the bot promoted
  • `/admincache`*:* force refresh the admins list
+ • `/zombies` :- searches deleted accounts
+ • `/zombies clean` :- removes deleted accounts from the group.
+
 """
 
 ADMINLIST_HANDLER = DisableAbleCommandHandler("admins", adminlist)
