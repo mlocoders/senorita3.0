@@ -24,3 +24,5 @@ async def take_ss(_, message):
         await m.delete()
     except Exception as e:
         await message.reply_text(str(e))
+
+__mod_name__ = "webss"
