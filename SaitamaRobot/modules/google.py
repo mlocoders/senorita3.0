@@ -11,16 +11,22 @@ from search_engine_parser import GoogleSearch
 import urllib
 from urllib.error import URLError, HTTPError
 from bs4 import BeautifulSoup
+from asyncio import sleep
+from datetime import datetime
+from requests import get, post
+
 
 from telegram import InputMediaPhoto, TelegramError
 from telegram import Update
 from telegram.ext import CallbackContext, run_async
 
 from SaitamaRobot import dispatcher
-
 from SaitamaRobot.modules.disable import DisableAbleCommandHandler
 from SaitamaRobot.modules.helper_funcs.alternate import typing_action
 from SaitamaRobot import telethn as tbot
+from SaitamaRobot import telethn as client
+from SaitamaRobot.events import register
+
 opener = urllib.request.build_opener()
 useragent = 'Mozilla/5.0 (Linux; Android 6.0.1; SM-G920V Build/MMB29K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.98 Mobile Safari/537.36'
 opener.addheaders = [('User-agent', useragent)]
@@ -35,7 +41,6 @@ from telethon.tl.types import *
 
 from SaitamaRobot import *
 
-from SaitamaRobot.events import register
 
 opener = urllib.request.build_opener()
 useragent = "Mozilla/5.0 (Linux; Android 9; SM-G960F Build/PPR1.180610.011; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/74.0.3729.157 Mobile Safari/537.36"
@@ -332,6 +337,110 @@ def scam(imgspage, lim):
     return imglinks
 
 
+def progress(current, total):
+    """Calculate and return the download progress with given arguments."""
+    print(
+        "Downloaded {} of {}\nCompleted {}".format(
+            current, total, (current / total) * 100
+        )
+    )
+
+
+async def is_register_admin(chat, user):
+    if isinstance(chat, (types.InputPeerChannel, types.InputChannel)):
+
+        return isinstance(
+            (
+                await client(functions.channels.GetParticipantRequest(chat, user))
+            ).participant,
+            (types.ChannelParticipantAdmin, types.ChannelParticipantCreator),
+        )
+    elif isinstance(chat, types.InputPeerChat):
+
+        ui = await client.get_peer_id(user)
+        ps = (
+            await client(functions.messages.GetFullChatRequest(chat.chat_id))
+        ).full_chat.participants.participants
+        return isinstance(
+            next((p for p in ps if p.user_id == ui), None),
+            (types.ChatParticipantAdmin, types.ChatParticipantCreator),
+        )
+    else:
+        return None
+
+
+@register(pattern=r"^/getqr$")
+async def parseqr(qr_e):
+    """For /getqr command, get QR Code content from the replied photo."""
+    if qr_e.fwd_from:
+        return
+    start = datetime.now()
+    downloaded_file_name = await qr_e.client.download_media(
+        await qr_e.get_reply_message(), progress_callback=progress
+    )
+    url = "https://api.qrserver.com/v1/read-qr-code/?outputformat=json"
+    file = open(downloaded_file_name, "rb")
+    files = {"file": file}
+    resp = post(url, files=files).json()
+    qr_contents = resp[0]["symbol"][0]["data"]
+    file.close()
+    os.remove(downloaded_file_name)
+    end = datetime.now()
+    duration = (end - start).seconds
+    await qr_e.reply(
+        "Obtained QRCode contents in {} seconds.\n{}".format(duration, qr_contents)
+    )
+
+
+@register(pattern=r"^/makeqr(?: |$)([\s\S]*)")
+async def make_qr(qrcode):
+    """For /makeqr command, make a QR Code containing the given content."""
+    if qrcode.fwd_from:
+        return
+    start = datetime.now()
+    input_str = qrcode.pattern_match.group(1)
+    message = "SYNTAX: `/makeqr <text>`"
+    reply_msg_id = None
+    if input_str:
+        message = input_str
+    elif qrcode.reply_to_msg_id:
+        previous_message = await qrcode.get_reply_message()
+        reply_msg_id = previous_message.id
+        if previous_message.media:
+            downloaded_file_name = await qrcode.client.download_media(
+                previous_message, progress_callback=progress
+            )
+            m_list = None
+            with open(downloaded_file_name, "rb") as file:
+                m_list = file.readlines()
+            message = ""
+            for media in m_list:
+                message += media.decode("UTF-8") + "\r\n"
+            os.remove(downloaded_file_name)
+        else:
+            message = previous_message.message
+
+    url = "https://api.qrserver.com/v1/create-qr-code/?data={}&\
+size=200x200&charset-source=UTF-8&charset-target=UTF-8\
+&ecc=L&color=0-0-0&bgcolor=255-255-255\
+&margin=1&qzone=0&format=jpg"
+
+    resp = get(url.format(message), stream=True)
+    required_file_name = "temp_qr.webp"
+    with open(required_file_name, "w+b") as file:
+        for chunk in resp.iter_content(chunk_size=128):
+            file.write(chunk)
+    await qrcode.client.send_file(
+        qrcode.chat_id,
+        required_file_name,
+        reply_to=reply_msg_id,
+        progress_callback=progress,
+    )
+    os.remove(required_file_name)
+    duration = (datetime.now() - start).seconds
+    await qrcode.reply("Created QRCode in {} seconds".format(duration))
+    await sleep(5)
+
 __mod_name__ = "Google"
 
 __help__ = """
@@ -343,6 +452,8 @@ Do you know that you can search an image with a link too? /reverse picturelink <
 • `/gitinfo <github username>` :- Get info of any github profile
 • `/ytdl <youtube video link` :- download any youtube video in every possible resolution.
 • `/webss <website url>` :- get screen shot of any website you want.
+• `/makeqr <text` : make any text to a qr code format
+• `/getqr <reply to a qrcode> : decode and get what is inside the qr code.
 """
 
 
