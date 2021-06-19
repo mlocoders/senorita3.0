@@ -178,7 +178,7 @@ async def chatbot_function(client, message):
         # Kang with the credits bitches @InukaASiTH
         test = test.replace("aco", "Eren")
         test = test.replace("Aco", "eren")
-        URL = f"https://api.affiliateplus.xyz/api/chatbot?message={test}&botname=@Cutiepii_Robot&ownername=@Awesome_Rj"
+        URL = f"https://api.affiliateplus.xyz/api/chatbot?message={test}&botname=Eren&ownername=@ihaveenoughhate"
         try:
             r = requests.request("GET", url=URL)
         except:
