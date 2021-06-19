@@ -388,7 +388,7 @@ async def parseqr(qr_e):
     end = datetime.now()
     duration = (end - start).seconds
     await qr_e.reply(
-        "Obtained QRCode contents in {} seconds.\n{}".format(duration, qr_contents)
+        "Obtained QRCode contents in {} seconds, Inside the QR Code was:\n{}".format(duration, qr_contents)
     )
 
 
@@ -399,7 +399,7 @@ async def make_qr(qrcode):
         return
     start = datetime.now()
     input_str = qrcode.pattern_match.group(1)
-    message = "SYNTAX: `/makeqr <text>`"
+    message = "USAGE: `/makeqr <text>`"
     reply_msg_id = None
     if input_str:
         message = input_str
@@ -426,7 +426,7 @@ size=200x200&charset-source=UTF-8&charset-target=UTF-8\
 &margin=1&qzone=0&format=jpg"
 
     resp = get(url.format(message), stream=True)
-    required_file_name = "temp_qr.webp"
+    required_file_name = "temp_qr.png"
     with open(required_file_name, "w+b") as file:
         for chunk in resp.iter_content(chunk_size=128):
             file.write(chunk)
