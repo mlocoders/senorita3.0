@@ -341,7 +341,8 @@ __help__ = """
  • `/reverse` :- reply to a sticker, or an image to search it!
 Do you know that you can search an image with a link too? /reverse picturelink <amount>.
 • `/gitinfo <github username>` :- Get info of any github profile
-• `/ytdl <youtube video link` :- download any youtube video in every possible resolutions
+• `/ytdl <youtube video link` :- download any youtube video in every possible resolution.
+• `/webss <website url>` :- get screen shot of any website you want.
 """
 
 
