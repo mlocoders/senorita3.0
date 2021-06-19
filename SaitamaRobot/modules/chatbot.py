@@ -115,7 +115,7 @@ async def chatbot_function(client, message):
         test = msg
         test = test.replace("aco", "eren")
         test = test.replace("Aco", "Eren")
-        URL = "https://api.affiliateplus.xyz/api/chatbot?message=hi&botname=Eren&ownername=@ihaveenoughhate"
+        URL = "https://api.affiliateplus.xyz/api/chatbot?message={test}&botname=Eren&ownername=@ihaveenoughhate"
 
         try:
             r = requests.request("GET", url=URL)
