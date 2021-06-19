@@ -30,7 +30,7 @@ from pyrogram.types import ChatPermissions, InlineKeyboardButton, InlineKeyboard
 
 from SaitamaRobot import BOT_ID
 
-# from DaisyX import OWNER_ID as SUDO_USERS
+# from SaitamaRobot import OWNER_ID as SUDO_USERS
 from SaitamaRobot import pbot
 from SaitamaRobot.modules.sql_extended import forceSubscribe_sql as sql
 
@@ -215,14 +215,14 @@ def config(client, message):
 
 
 __help__ = """
-<b>ForceSubscribe:</b>
+*ForceSubscribe*:
 - Eren can mute members who are not subscribed your channel until they subscribe
 - When enabled I will mute unsubscribed members and show them a unmute button. When they pressed the button I will unmute them
 <b>Setup</b>
 1) First of all add me in the group as admin with ban users permission and in the channel as admin.
 Note: Only creator of the group can setup me and i will not allow force subscribe again if not done so.
  
-<b>Commmands</b>
+*Commmands*:
  - /forcesubscribe - To get the current settings.
  - /forcesubscribe no/off/disable - To turn of ForceSubscribe.
  - /forcesubscribe {channel username} - To turn on and setup the channel.
