@@ -7,6 +7,7 @@ import emoji
 import aiohttp
 from google_trans_new import google_translator
 from pyrogram import filters
+import requests
 
 from SaitamaRobot import BOT_ID
 from SaitamaRobot.modules.mongo.chatbot_mongo import add_chat, get_session, remove_chat
