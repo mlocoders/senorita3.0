@@ -128,7 +128,7 @@ async def chatbot_function(client, message):
 
         pro = response
         try:
-            await johan.send_chat_action(message.chat.id, "typing")
+            await eren.send_chat_action(message.chat.id, "typing")
             await message.reply_text(pro)
         except CFError:
             return
@@ -349,10 +349,6 @@ __help__ = """
  • `/chatbot [ON/OFF]`: Enables and disables Chatbot mode in the chat.
  • `/chatbot EN` : Enables English only Chatbot mode in the chat.
  *Powered by Brainshop* (brainshop.ai)
- 
- 
- 
- 
 """
 
 __mod_name__ = "ChatBot"
