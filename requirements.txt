@@ -70,5 +70,4 @@ aiogram
 aiofiles
 aiocron
 uvloop
-
 python-dotenv
