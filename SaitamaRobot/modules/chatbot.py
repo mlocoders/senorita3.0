@@ -1,13 +1,14 @@
+
 # CREDITS GOES TO @daisyx and Daisyx's Developers
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-import re
+
 import emoji
+import re
 import aiohttp
 from google_trans_new import google_translator
 from pyrogram import filters
-import requests
 
 from SaitamaRobot import BOT_ID
 from SaitamaRobot.modules.mongo.chatbot_mongo import add_chat, get_session, remove_chat
@@ -15,8 +16,12 @@ from SaitamaRobot import arq
 from SaitamaRobot.utils.pluginhelp import admins_only, edit_or_reply
 from SaitamaRobot import pbot as eren
 
-url = "https://acobot-brainshop-ai-v1.p.rapidapi.com/get"
 translator = google_translator()
+url = "https://acobot-brainshop-ai-v1.p.rapidapi.com/get"
+
+async def lunaQuery(query: str, user_id: int):
+    luna = await arq.luna(query, user_id)
+    return luna.result
 
 
 def extract_emojis(s):
@@ -37,9 +42,9 @@ async def fetch(url):
         print("AI response Timeout")
         return
 
-
 eren_chats = []
 en_chats = []
+
 
 @eren.on_message(
     filters.command("chatbot") & ~filters.edited & ~filters.bot & ~filters.private
@@ -58,10 +63,10 @@ async def chatbot_status(_, message):
         lel = await edit_or_reply(message, "`Processing...`")
         lol = add_chat(int(message.chat.id))
         if not lol:
-            await lel.edit("AI is already enabled for this Chat")
+            await lel.edit("AI is Already enabled In This Chat")
             return
         await lel.edit(
-            f"AI Successfully Enabled For this Chat "
+            f"AI Successfully Enabled For this Chat"
         )
 
     elif status == "OFF" or status == "off" or status == "Off":
@@ -71,15 +76,15 @@ async def chatbot_status(_, message):
             await lel.edit("AI Was Not Enabled In This Chat")
             return
         await lel.edit(
-            f"AI Successfully Disabled For this Chat"
+            f" Successfully Disabled AI For This Chat"
         )
 
     elif status == "EN" or status == "en" or status == "english":
         if not chat_id in en_chats:
             en_chats.append(chat_id)
-            await message.reply_text("English only AI Enabled! For this Chat")
+            await message.reply_text("English Only AI Enabled!")
             return
-        await message.reply_text(" English Only AI Is Already Enabled")
+        await message.reply_text("English Only AI Is Already Enabled in this chat.")
         message.continue_propagation()
     else:
         await message.reply_text(
@@ -113,23 +118,17 @@ async def chatbot_function(client, message):
         message.continue_propagation()
     if chat_id in en_chats:
         test = msg
-        test = test.replace("aco", "eren")
         test = test.replace("Aco", "Eren")
-        URL = "https://api.affiliateplus.xyz/api/chatbot?message={test}&botname=Eren&ownername=@ihaveenoughhate"
+        test = test.replace("aco", "eren")
+        response = await lunaQuery(
+            test, message.from_user.id if message.from_user else 0
+        )
+        response = response.replace("aco", "eren")
+        response = response.replace("Aco", "Eren")
 
+        pro = response
         try:
-            r = requests.request("GET", url=URL)
-        except:
-            return
-
-        try:
-            result = r.json()
-        except:
-            return
-
-        pro = result["message"]
-        try:
-            await eren.send_chat_action(message.chat.id, "typing")
+            await johan.send_chat_action(message.chat.id, "typing")
             await message.reply_text(pro)
         except CFError:
             return
@@ -175,20 +174,18 @@ async def chatbot_function(client, message):
                 return
         # test = emoji.demojize(test.strip())
 
-        # Kang with the credits bitches @InukaASiTH
-        test = test.replace("aco", "Eren")
-        test = test.replace("Aco", "eren")
-        URL = f"https://api.affiliateplus.xyz/api/chatbot?message={test}&botname=Eren&ownername=@ihaveenoughhate"
-        try:
-            r = requests.request("GET", url=URL)
-        except:
-            return
+        test = test.replace("Eren", "aco")
+        test = test.replace("eren", "aco")
+        
+        response = await lunaQuery(
+            test, message.from_user.id if message.from_user else 0
+        )
+        response = response.replace("aco", "Eren")
+        response = response.replace("Aco", "eren")
+        response = response.replace("Luna", "Eren")
+        response = response.replace("Luna", "eren")
 
-        try:
-            result = r.json()
-        except:
-            return
-        pro = result["message"]
+        pro = response
         if not "en" in lan and not lan == "":
             try:
                 pro = translator.translate(pro, lang_tgt=lan[0])
@@ -250,20 +247,17 @@ async def sasuke(client, message):
     # test = emoji.demojize(test.strip())
 
     # Kang with the credits bitches @InukaASiTH
-    test = test.replace("aco", "eren")
-    test = test.replace("Aco", "Eren")
-    URL = f"https://api.affiliateplus.xyz/api/chatbot?message={test}&botname=Eren&ownername=@ihaveenoughhate"
-    try:
-        r = requests.request("GET", url=URL)
-    except:
-        return
+    test = test.replace("aco", "Eren")
+    test = test.replace("aco", "eren")    
+    
+    response = await lunaQuery(test, message.from_user.id if message.from_user else 0)
+    response = response.replace("Aco", "Eren")
+    response = response.replace("aco", "eren")
+    response = response.replace("Luna", "Eren")
+    response = response.replace("Luna", "eren")
 
-    try:
-        result = r.json()
-    except:
-        return
 
-    pro = result["message"]
+    pro = response
     if not "en" in lan and not lan == "":
         pro = translator.translate(pro, lang_tgt=lan[0])
     try:
@@ -327,20 +321,16 @@ async def sasuke(client, message):
 
     # test = emoji.demojize(test.strip())
 
-    # Kang with the credits bitches @InukaASiTH
     test = test.replace("Aco", "Eren")
-    test = test.replace("Aco", "Eren")
-    URL = f"https://api.affiliateplus.xyz/api/chatbot?message={test}&botname=Eren&ownername=@ihaveenoughhate"
-    try:
-        r = requests.request("GET", url=URL)
-    except:
-        return
+    test = test.replace("aco", "eren")
+    response = await lunaQuery(test, message.from_user.id if message.from_user else 0)
+    response = response.replace("Aco", "Eren")
+    response = response.replace("aco", "eren")
+    response = response.replace("Luna", "Eren")
+    response = response.replace("Luna", "eren")
 
-    try:
-        result = r.json()
-    except:
-        return
-    pro = result["message"]
+
+    pro = response
     if not "en" in lan and not lan == "":
         try:
             pro = translator.translate(pro, lang_tgt=lan[0])
@@ -352,12 +342,17 @@ async def sasuke(client, message):
     except CFError:
         return
 
+
 __help__ = """
  Chatbot utilizes the Branshop's API and allows Eren to talk and provides a more interactive group chat experience.
  *Admins Only Commands*:
  • `/chatbot [ON/OFF]`: Enables and disables Chatbot mode in the chat.
  • `/chatbot EN` : Enables English only Chatbot mode in the chat.
- *Powered by Brainshop* (brainshop.ai) 
+ *Powered by Brainshop* (brainshop.ai)
+ 
+ 
+ 
+ 
 """
 
 __mod_name__ = "ChatBot"
