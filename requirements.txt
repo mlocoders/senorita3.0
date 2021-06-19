@@ -69,3 +69,6 @@ opencv-python-headless
 aiogram
 aiofiles
 aiocron
+uvloop
+
+python-dotenv
