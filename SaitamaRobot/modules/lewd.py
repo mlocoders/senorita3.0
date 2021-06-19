@@ -5,7 +5,7 @@ import requests
 from PIL import Image
 from telegram import ParseMode
 from SaitamaRobot import dispatcher, updater
-import SaitamaRobot.modules.sql_extended.nsfw_sql as sql
+import SaitamaRobot.modules.sql.nsfw_sql as sql
 from SaitamaRobot.modules.log_channel import gloggable
 from telegram import Message, Chat, Update, Bot, MessageEntity
 from telegram.error import BadRequest, RetryAfter, Unauthorized
@@ -566,6 +566,11 @@ def hug(update, context):
     target = "cuddle"
     msg.reply_video(nekos.img(target))
 
+@run_async
+def cuddle(update, context):
+    msg = update.effective_message
+    target = "cuddle"
+    msg.reply_video(nekos.img(target))
 
 @run_async
 def erok(update, context):
@@ -693,7 +698,8 @@ WAIFU_HANDLER = CommandHandler("waifu", waifu)
 LEWD_HANDLER = CommandHandler("lewd", lewd)
 KISS_HANDLER = CommandHandler("kiss", kiss)
 FEMDOM_HANDLER = CommandHandler("femdom", femdom)
-CUDDLE_HANDLER = CommandHandler("hug", hug)
+CUDDLE_HANDLER = CommandHandler("cuddle", cuddle)
+HUG_HANDLER = CommandHandler("hug", hug)
 EROK_HANDLER = CommandHandler("erok", erok)
 FOXGIRL_HANDLER = CommandHandler("foxgirl", foxgirl)
 TITSGIF_HANDLER = CommandHandler("titsgif", titsgif)
@@ -751,6 +757,7 @@ dispatcher.add_handler(LEWD_HANDLER)
 dispatcher.add_handler(KISS_HANDLER)
 dispatcher.add_handler(FEMDOM_HANDLER)
 dispatcher.add_handler(CUDDLE_HANDLER)
+dispatcher.add_handler(HUG_HANDLER)
 dispatcher.add_handler(EROK_HANDLER)
 dispatcher.add_handler(FOXGIRL_HANDLER)
 dispatcher.add_handler(TITSGIF_HANDLER)
@@ -815,18 +822,19 @@ __handlers__ = [
     SMUG_HANDLER,
     BAKA_HANDLER,
     DVA_HANDLER,
+    HUG_HANDLER,
 ]
 
 __help__ = """
 Module credits: [Dank-del](https://github.com/Dank-del/Chizuru/) ,
 Also thanks to [EverythingSuckz](https://t.me/EverythingSuckz) for NSFW filter.
     
-Usage:
+*ENABLE AND DISABLE* :
     
 /addnsfw : Enable NSFW mode
 /rmnsfw : Disable NSFW mode
  
-Commands :   
+*Commands* :   
  - /neko: Sends Random SFW Neko source Images.
  - /feet: Sends Random Anime Feet Images.
  - /yuri: Sends Random Yuri source Images.

@@ -140,7 +140,5 @@ async def ytdlCallback(_, cq):
         
 __mod_name__ = "YoutubeDL"
 
-__help__ = """
-`/ytdl <video link>`: Download an youtube video.
-"""
+
 
