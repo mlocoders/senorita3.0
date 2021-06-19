@@ -453,7 +453,7 @@ Do you know that you can search an image with a link too? /reverse picturelink <
 • `/ytdl <youtube video link` :- download any youtube video in every possible resolution.
 • `/webss <website url>` :- get screen shot of any website you want.
 • `/makeqr <text` : make any text to a qr code format
-• `/getqr <reply to a qrcode> : decode and get what is inside the qr code.
+• `/getqr <reply to a qrcode>` : decode and get what is inside the qr code.
 """
 
 
