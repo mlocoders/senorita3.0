@@ -37,7 +37,7 @@ async def fetch(url):
         return
 
 
-Eren_chats = []
+eren_chats = []
 en_chats = []
 
 @eren.on_message(
@@ -45,7 +45,7 @@ en_chats = []
 )
 @admins_only
 async def chatbot_status(_, message):
-    global Eren_chats
+    global eren_chats
     if len(message.command) != 2:
         await message.reply_text(
             "I only recognize `/chatbot on` and `/chatbot off` only"
