@@ -332,7 +332,7 @@ def scam(imgspage, lim):
     return imglinks
 
 
-__mod_name__ = "GoogleSearch"
+__mod_name__ = "Google"
 
 __help__ = """
  • `/google <text>` :- Perform a google search
