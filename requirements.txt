@@ -35,7 +35,7 @@ fontTools
 pyrogram
 nekos.py
 telegraph
-TgCrypto
+tgCrypto>=1.2.2
 youtube_dl
 youtube_search
 pytube
