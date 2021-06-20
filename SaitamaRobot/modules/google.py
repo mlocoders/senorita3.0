@@ -16,7 +16,7 @@ from asyncio import sleep
 from datetime import datetime
 from requests import get, post
 
-from SaitamaRobot import telethon as client
+from SaitamaRobot import telethn as client
 from SaitamaRobot import *
 from SaitamaRobot import telethn as tbot
 from SaitamaRobot.events import register
