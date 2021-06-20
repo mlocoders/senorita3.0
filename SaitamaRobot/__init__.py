@@ -5,8 +5,6 @@ import time
 import spamwatch
 from pyrogram import Client, errors
 import telegram.ext as tg
-from aiogram import Bot, Dispatcher, types
-from aiogram.bot.api import TELEGRAM_PRODUCTION, TelegramAPIServer
 from telethon import TelegramClient
 from motor import motor_asyncio
 from odmantic import AIOEngine
@@ -217,9 +215,12 @@ else:
         LOGGER.warning("Can't connect to SpamWatch!")
 
 updater = tg.Updater(TOKEN, workers=WORKERS, use_context=True)
+print("[EREN]: TELETHON CLIENT STARTING"]
 telethn = TelegramClient("eren", API_ID, API_HASH)
 dispatcher = updater.dispatcher
+print("[EREN]: PYROGRAM CLIENT STARTING")
 pbot = Client("ErenPyro", api_id=API_ID, api_hash=API_HASH, bot_token=TOKEN)
+print("[EREN]: CONNECTING TO MONGO DATABASE")
 mongodb = MongoClient(MONGO_URI, MONGO_PORT)[MONGO_DB]
 motor = motor_asyncio.AsyncIOMotorClient(MONGO_URI)
 db = motor[MONGO_DB]
@@ -229,10 +230,7 @@ aiohttpsession = ClientSession()
 # ARQ Client
 print("[INFO]: INITIALIZING ARQ CLIENT")
 arq = ARQ(ARQ_API_URL, ARQ_API_KEY, aiohttpsession)
-server = TELEGRAM_PRODUCTION
-# AIOGram
-print("[EREN]: INSTALLING AIOGRAM")
-bot = Bot(token=TOKEN, parse_mode=types.ParseMode.HTML, server=server)
+print("[EREN]: CONNECTING TO ELEPHANT SQL DATABASE")
 
 DRAGONS = list(DRAGONS) + list(DEV_USERS)
 DEV_USERS = list(DEV_USERS)
