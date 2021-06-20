@@ -215,7 +215,7 @@ else:
         LOGGER.warning("Can't connect to SpamWatch!")
 
 updater = tg.Updater(TOKEN, workers=WORKERS, use_context=True)
-print("[EREN]: TELETHON CLIENT STARTING"]
+print("[EREN]: TELETHON CLIENT STARTING")
 telethn = TelegramClient("eren", API_ID, API_HASH)
 dispatcher = updater.dispatcher
 print("[EREN]: PYROGRAM CLIENT STARTING")
