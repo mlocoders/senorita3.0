@@ -191,7 +191,7 @@ try:
 
     REDIS.ping()
 
-    LOGGER.info("Your redis server is now alive!")
+    LOGGER.info("Connecting to the Redis Database!")
 
 except BaseException:
 
@@ -201,7 +201,7 @@ finally:
 
    REDIS.ping()
 
-   LOGGER.info("Your redis server is now alive!")
+   LOGGER.info("Connection to the Redis Database Established Successfully!")
     
 
 if not SPAMWATCH_API:
