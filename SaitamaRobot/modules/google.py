@@ -2,49 +2,24 @@ import glob
 import io
 import os
 import re
-import aiohttp
-import urllib.request
-from urllib.parse import urlencode
-import requests
-from PIL import Image
-from search_engine_parser import GoogleSearch
 import urllib
-from urllib.error import URLError, HTTPError
+import urllib.request
+
+import requests
+from bing_image_downloader import downloader
 from bs4 import BeautifulSoup
+from PIL import Image
+from telethon import *
+from telethon.tl import functions, types
+from telethon.tl.types import *
 from asyncio import sleep
 from datetime import datetime
 from requests import get, post
 
-
-from telegram import InputMediaPhoto, TelegramError
-from telegram import Update
-from telegram.ext import CallbackContext, run_async
-
-from SaitamaRobot.modules.disable import DisableAbleCommandHandler
-from SaitamaRobot.modules.helper_funcs.alternate import typing_action
-from SaitamaRobot import telethn as tbot
-from SaitamaRobot import telethn as client
-from SaitamaRobot.events import register
-
-opener = urllib.request.build_opener()
-useragent = 'Mozilla/5.0 (Linux; Android 6.0.1; SM-G920V Build/MMB29K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.98 Mobile Safari/537.36'
-opener.addheaders = [('User-agent', useragent)]
-
-import bs4
-import html2text
-from bing_image_downloader import downloader
-from telethon import *
-from telethon.tl import functions
-from telethon.tl import types
-from telethon.tl.types import *
-
+from SaitamaRobot import telethon as client
 from SaitamaRobot import *
-
-
-opener = urllib.request.build_opener()
-useragent = "Mozilla/5.0 (Linux; Android 9; SM-G960F Build/PPR1.180610.011; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/74.0.3729.157 Mobile Safari/537.36"
-opener.addheaders = [("User-agent", useragent)]
-
+from SaitamaRobot import telethn as tbot
+from SaitamaRobot.events import register
 
 @register(pattern="^/google (.*)")
 async def _(event):
