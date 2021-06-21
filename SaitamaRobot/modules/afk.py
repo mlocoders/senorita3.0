@@ -165,10 +165,10 @@ def __gdpr__(user_id):
     end_afk(user_id)
 
 
-AFK_HANDLER = DisableAbleCommandHandler("afk", afk)
+AFK_HANDLER = DisableAbleCommandHandler("afk", afk, run_async=True)
 AFK_REGEX_HANDLER = MessageHandler(Filters.regex("(?i)brb"), afk)
-NO_AFK_HANDLER = MessageHandler(Filters.all & Filters.chat_type.group, no_longer_afk)
-AFK_REPLY_HANDLER = MessageHandler(Filters.all & Filters.chat_type.groups, reply_afk)
+NO_AFK_HANDLER = MessageHandler(Filters.all & Filters.chat_type.group, no_longer_afk, run_async=True)
+AFK_REPLY_HANDLER = MessageHandler(Filters.all & Filters.chat_type.groups, reply_afk, run_async=True)
 
 dispatcher.add_handler(AFK_HANDLER, AFK_GROUP)
 dispatcher.add_handler(AFK_REGEX_HANDLER, AFK_GROUP)
