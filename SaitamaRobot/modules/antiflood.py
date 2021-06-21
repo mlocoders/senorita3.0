@@ -389,7 +389,7 @@ SET_FLOOD_HANDLER = CommandHandler(
     "setflood", set_flood, pass_args=True, run_async=True
 )  # , filters=Filters.chat_type.groups)
 SET_FLOOD_MODE_HANDLER = CommandHandler(
-    "setfloodmode", set_flood_mode, pass_args=True, run_async
+    "setfloodmode", set_flood_mode, pass_args=True, run_async=True
 )  # , filters=Filters.chat_type.groups)
 FLOOD_HANDLER = CommandHandler("flood", flood, run_async=True)  # , filters=Filters.chat_type.groups)
 
