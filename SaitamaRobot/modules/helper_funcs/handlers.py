@@ -1,5 +1,5 @@
 import SaitamaRobot.modules.sql.blacklistusers_sql as sql
-from SaitamRobot import ALLOW_EXCL
+from SaitamaRobot import ALLOW_EXCL
 from SaitamaRobot import DEV_USERS, DRAGONS, DEMONS, TIGERS, WOLVES
 
 from telegram import Update
@@ -134,3 +134,8 @@ class CustomMessageHandler(MessageHandler):
             self.filters &= ~(
                 Filters.update.edited_message | Filters.update.edited_channel_post
             )
+
+
+        def check_update(self, update):
+            if isinstance(update, Update) and update.effective_message:
+                return self.filters(update)
