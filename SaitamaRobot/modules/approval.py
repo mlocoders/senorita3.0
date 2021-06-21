@@ -220,7 +220,7 @@ Admin commands:
 APPROVED_HANDLER = DisableAbleCommandHandler("approved", approved, filters=Filters.chat_type.groups, run_async=True)
 UNAPPROVE_ALL_HANDLER = DisableAbleCommandHandler("unapproveall", unapproveall, filters=Filters.chat_type.groups, run_async=True)
 APPROVE_HANDLER = DisableAbleCommandHandler("approve", approve, pass_args=True, filters=Filters.chat_type.groups, run_async=True)
-UNAPPROVE_HANDLER = DisableAbleCommandHandler("unapprove", unapprove, pass_args=True, filters=Filters.chat_type.groups, run_asyc=True)
+UNAPPROVE_HANDLER = DisableAbleCommandHandler("unapprove", unapprove, pass_args=True, filters=Filters.chat_type.groups, run_async=True)
 APPROVEL_HANDLER = DisableAbleCommandHandler("approval", approval, pass_args=True, filters=Filters.chat_type.groups, run_async=True)
 
 
