@@ -210,7 +210,6 @@ def gifid(update: Update, context: CallbackContext):
         update.effective_message.reply_text("Please reply to a gif to get its ID.")
 
 
-@run_async
 def info(update: Update, context: CallbackContext):
     bot, args = context.bot, context.args
     message = update.effective_message
@@ -551,7 +550,7 @@ GET_BIO_HANDLER = DisableAbleCommandHandler("bio", about_bio)
 STATS_HANDLER = CommandHandler("stats", stats)
 ID_HANDLER = DisableAbleCommandHandler("id", get_id)
 GIFID_HANDLER = DisableAbleCommandHandler("gifid", gifid)
-INFO_HANDLER = DisableAbleCommandHandler(("info", "book"), info)
+INFO_HANDLER = DisableAbleCommandHandler(("info", "book"), info, run_async=True)
 
 SET_ABOUT_HANDLER = DisableAbleCommandHandler("setme", set_about_me)
 GET_ABOUT_HANDLER = DisableAbleCommandHandler("me", about_me)
