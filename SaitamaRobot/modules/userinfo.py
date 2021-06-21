@@ -333,20 +333,21 @@ def info(update: Update, context: CallbackContext):
         try:
             profile = context.bot.get_user_profile_photos(user.id).photos[0][-1]
             context.bot.sendChatAction(chat.id, "upload_photo")
-            context.bot.send_photo(
+            context.bot.send_message(
             chat.id,
             photo=profile,
             caption=(text),
-            parse_mode=ParseMode.HTML,            
+            parse_mode=ParseMode.HTML,
+            disable_web_page_preview=True,
         )
         # Incase user don't have profile pic, send normal text
         except IndexError:
             message.reply_text(
-                text, parse_mode=ParseMode.HTML)
+                text, parse_mode=ParseMode.HTML, disable_web_page_preview=True)
 
     else:
         message.reply_text(
-            text, parse_mode=ParseMode.HTML)
+            text, parse_mode=ParseMode.HTML, disable_web_page_preview=True)
 
     rep.delete()
 
