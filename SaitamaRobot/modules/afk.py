@@ -21,7 +21,7 @@ from SaitamaRobot.modules.helper_funcs.readable_time import get_readable_time
 AFK_GROUP = 7
 AFK_REPLY_GROUP = 8
 
-@run_async
+
 def afk(update, context):
     args = update.effective_message.text.split(None, 1)
     user = update.effective_user
@@ -44,7 +44,6 @@ def afk(update, context):
     except BadRequest:
         pass
 
-@run_async
 def no_longer_afk(update, context):
     user = update.effective_user
     message = update.effective_message
@@ -84,7 +83,6 @@ def no_longer_afk(update, context):
 
 
 
-@run_async
 def reply_afk(update, context):
     message = update.effective_message
     userc = update.effective_user
@@ -169,8 +167,8 @@ def __gdpr__(user_id):
 
 AFK_HANDLER = DisableAbleCommandHandler("afk", afk)
 AFK_REGEX_HANDLER = MessageHandler(Filters.regex("(?i)brb"), afk)
-NO_AFK_HANDLER = MessageHandler(Filters.all & Filters.group, no_longer_afk)
-AFK_REPLY_HANDLER = MessageHandler(Filters.all & Filters.group, reply_afk)
+NO_AFK_HANDLER = MessageHandler(Filters.all & Filters.chat_type.group, no_longer_afk)
+AFK_REPLY_HANDLER = MessageHandler(Filters.all & Filters.chat_type.groups, reply_afk)
 
 dispatcher.add_handler(AFK_HANDLER, AFK_GROUP)
 dispatcher.add_handler(AFK_REGEX_HANDLER, AFK_GROUP)
