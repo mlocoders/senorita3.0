@@ -22,7 +22,7 @@ from SaitamaRobot.modules.helper_funcs.alternate import send_message, typing_act
 BLACKLIST_GROUP = 11
 
 
-@run_async
+
 @user_admin
 @typing_action
 def blacklist(update, context):
@@ -69,7 +69,6 @@ def blacklist(update, context):
         send_message(update.effective_message, text, parse_mode=ParseMode.HTML)
 
 
-@run_async
 @user_admin
 @typing_action
 def add_blacklist(update, context):
@@ -121,7 +120,7 @@ def add_blacklist(update, context):
         )
 
 
-@run_async
+
 @user_admin
 @typing_action
 def unblacklist(update, context):
@@ -198,7 +197,6 @@ def unblacklist(update, context):
         )
 
 
-@run_async
 @loggable
 @user_admin
 @typing_action
@@ -332,7 +330,7 @@ def findall(p, s):
         i = s.find(p, i + 1)
 
 
-@run_async
+
 @user_not_admin
 def del_blacklist(update, context):
     chat = update.effective_chat
@@ -470,16 +468,17 @@ Admin only:
 
 """
 BLACKLIST_HANDLER = DisableAbleCommandHandler(
-    "blacklist", blacklist, pass_args=True, admin_ok=True)
-ADD_BLACKLIST_HANDLER = CommandHandler("addblacklist", add_blacklist)
-UNBLACKLIST_HANDLER = CommandHandler("unblacklist", unblacklist)
+    "blacklist", blacklist, pass_args=True, admin_ok=True, run_async=True)
+ADD_BLACKLIST_HANDLER = CommandHandler("addblacklist", add_blacklist, run_async=True)
+UNBLACKLIST_HANDLER = CommandHandler("unblacklist", unblacklist, run_async=True)
 BLACKLISTMODE_HANDLER = CommandHandler(
-    "blacklistmode", blacklist_mode, pass_args=True)
+    "blacklistmode", blacklist_mode, pass_args=True, run_async=True)
 BLACKLIST_DEL_HANDLER = MessageHandler(
     (Filters.text | Filters.command | Filters.sticker | Filters.photo)
-    & Filters.group,
+    & Filters.chat_type.groups,
     del_blacklist,
     allow_edit=True,
+    run_async=True,
 )
 
 dispatcher.add_handler(BLACKLIST_HANDLER)
