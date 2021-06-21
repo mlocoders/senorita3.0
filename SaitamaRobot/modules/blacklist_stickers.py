@@ -249,7 +249,7 @@ def unblackliststicker(update: Update, context: CallbackContext):
     else:
         send_message(
             update.effective_message,
-            "Tell me what stickers you want to add to the blacklist.",
+            "Tell me what stickers you want to remove from the blacklist.",
         )
 
 
