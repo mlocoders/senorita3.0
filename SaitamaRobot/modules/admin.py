@@ -5,9 +5,9 @@ from telegram.error import BadRequest
 from telegram.ext import CallbackContext, CommandHandler, Filters
 from telegram.utils.helpers import mention_html
 
-from Cutiepii_Robot import DRAGONS, dispatcher
-from Cutiepii_Robot.modules.disable import DisableAbleCommandHandler
-from Cutiepii_Robot.modules.helper_funcs.chat_status import (
+from SaitamaRobot import DRAGONS, dispatcher
+from SaitamaRobot.modules.disable import DisableAbleCommandHandler
+from SaitamaRobot.modules.helper_funcs.chat_status import (
     bot_admin,
     can_pin,
     can_promote,
@@ -16,12 +16,12 @@ from Cutiepii_Robot.modules.helper_funcs.chat_status import (
     ADMIN_CACHE,
 )
 
-from Cutiepii_Robot.modules.helper_funcs.extraction import (
+from SaitamaRobot.modules.helper_funcs.extraction import (
     extract_user,
     extract_user_and_text,
 )
-from Cutiepii_Robot.modules.log_channel import loggable
-from Cutiepii_Robot.modules.helper_funcs.alternate import send_message
+from SaitamaRobot.modules.log_channel import loggable
+from SaitamaRobot.modules.helper_funcs.alternate import send_message
 
 
 @connection_status
