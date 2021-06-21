@@ -26,6 +26,7 @@ from SaitamaRobot import (
 from SaitamaRobot.modules import ALL_MODULES
 from SaitamaRobot.modules.helper_funcs.chat_status import is_user_admin
 from SaitamaRobot.modules.helper_funcs.misc import paginate_modules
+from SaitamaRobot.modules.disable import DisableAbleCommandHandler
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, ParseMode, Update
 from telegram.error import (
     BadRequest,
@@ -676,9 +677,9 @@ def main():
 
 
     test_handler = CommandHandler("test", test)
-    start_handler = CommandHandler("start", start)
+    start_handler = DisableAbleCommandHandler("start", start, run_async=True)
 
-    help_handler = CommandHandler("help", get_help)
+    help_handler = DisableAbleCommandHandler("help", get_help, run_async=True)
     help_callback_handler = CallbackQueryHandler(help_button, pattern=r"help_.*")
 
     settings_handler = CommandHandler("settings", get_settings)
