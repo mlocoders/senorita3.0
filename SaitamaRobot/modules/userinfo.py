@@ -417,13 +417,11 @@ def set_about_me(update: Update, context: CallbackContext):
             )
 
 
-
 @sudo_plus
 def stats(update: Update, context: CallbackContext):
     stats = "<b>📖 Current stats:</b>\n" + "\n".join([mod.__stats__() for mod in STATS])
     result = re.sub(r"(\d+)", r"<code>\1</code>", stats)
     update.effective_message.reply_text(result, parse_mode=ParseMode.HTML)
-
 
 
 def about_bio(update: Update, context: CallbackContext):
@@ -453,7 +451,6 @@ def about_bio(update: Update, context: CallbackContext):
         update.effective_message.reply_text(
             "You haven't had a bio set about yourself yet!",
         )
-
 
 
 def set_about_bio(update: Update, context: CallbackContext):
