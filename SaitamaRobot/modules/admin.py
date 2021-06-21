@@ -570,8 +570,8 @@ __help__ = """
 
 ADMINLIST_HANDLER = DisableAbleCommandHandler("admins", adminlist)
 
-PIN_HANDLER = CommandHandler("pin", pin, filters=Filters.group)
-UNPIN_HANDLER = CommandHandler("unpin", unpin, filters=Filters.group)
+PIN_HANDLER = CommandHandler("pin", pin, filters=Filters.chat_type.groups)
+UNPIN_HANDLER = CommandHandler("unpin", unpin, filters=Filters.chat_type.groups)
 
 INVITE_HANDLER = DisableAbleCommandHandler("invitelink", invite)
 
@@ -581,7 +581,7 @@ DEMOTE_HANDLER = DisableAbleCommandHandler("demote", demote)
 
 SET_TITLE_HANDLER = CommandHandler("title", set_title)
 ADMIN_REFRESH_HANDLER = CommandHandler(
-    "admincache", refresh_admin, filters=Filters.group)
+    "admincache", refresh_admin, filters=Filters.chat_type.groups)
 
 dispatcher.add_handler(ADMINLIST_HANDLER)
 dispatcher.add_handler(PIN_HANDLER)
