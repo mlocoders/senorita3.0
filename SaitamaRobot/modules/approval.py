@@ -17,7 +17,7 @@ from SaitamaRobot.modules.helper_funcs.alternate import typing_action
 
 
 
-@run_async
+
 @typing_action
 def approval(update: Update, context: CallbackContext) -> str:
     bot = context.bot
@@ -62,7 +62,7 @@ def approval(update: Update, context: CallbackContext) -> str:
 
 
 
-@run_async
+
 @bot_admin
 @user_admin
 @typing_action
@@ -110,7 +110,7 @@ def approve(update: Update, context: CallbackContext) -> str:
 
 
 
-@run_async
+
 @bot_admin
 @user_admin
 @typing_action
@@ -156,7 +156,7 @@ def unapprove(update: Update, context: CallbackContext) -> str:
     )
 
 
-@run_async
+
 @bot_admin
 @user_admin
 @typing_action
@@ -184,7 +184,7 @@ def approved(update: Update, context: CallbackContext) -> str:
                 parse_mode=ParseMode.HTML
         )
 
-@run_async
+
 @bot_admin
 @user_admin
 @typing_action
@@ -217,11 +217,11 @@ Admin commands:
 \
 """    
 
-APPROVED_HANDLER = DisableAbleCommandHandler("approved", approved, filters=Filters.group)
-UNAPPROVE_ALL_HANDLER = DisableAbleCommandHandler("unapproveall", unapproveall, filters=Filters.group)
-APPROVE_HANDLER = DisableAbleCommandHandler("approve", approve, pass_args=True, filters=Filters.group)
-UNAPPROVE_HANDLER = DisableAbleCommandHandler("unapprove", unapprove, pass_args=True, filters=Filters.group)
-APPROVEL_HANDLER = DisableAbleCommandHandler("approval", approval, pass_args=True, filters=Filters.group)
+APPROVED_HANDLER = DisableAbleCommandHandler("approved", approved, filters=Filters.chat_type.groups, run_async=True)
+UNAPPROVE_ALL_HANDLER = DisableAbleCommandHandler("unapproveall", unapproveall, filters=Filters.chat_type.groups, run_async=True)
+APPROVE_HANDLER = DisableAbleCommandHandler("approve", approve, pass_args=True, filters=Filters.chat_type.groups, run_async=True)
+UNAPPROVE_HANDLER = DisableAbleCommandHandler("unapprove", unapprove, pass_args=True, filters=Filters.chat_type.groups, run_async=True)
+APPROVEL_HANDLER = DisableAbleCommandHandler("approval", approval, pass_args=True, filters=Filters.chat_type.groups, run_async=True)
 
 
 dispatcher.add_handler(APPROVED_HANDLER)

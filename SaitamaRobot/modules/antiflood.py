@@ -19,7 +19,6 @@ FLOOD_GROUP = 3
 
 
 
-@run_async
 @loggable
 def check_flood(update, context) -> str:
     user = update.effective_user  # type: Optional[User]
@@ -102,7 +101,7 @@ def check_flood(update, context) -> str:
         )
 
 
-@run_async
+
 @user_admin
 @loggable
 @typing_action
@@ -200,7 +199,6 @@ def set_flood(update, context) -> str:
     return ""
 
 
-@run_async
 @typing_action
 def flood(update, context):
     chat = update.effective_chat  # type: Optional[Chat]
@@ -246,7 +244,7 @@ def flood(update, context):
         send_message(update.effective_message, text, parse_mode="markdown")
 
 
-@run_async
+
 @user_admin
 @loggable
 @typing_action
@@ -385,15 +383,15 @@ will result in restricting that user.
 __mod_name__ = "Antiflood"
 
 FLOOD_BAN_HANDLER = MessageHandler(
-    Filters.all & ~Filters.status_update & Filters.group, check_flood
+    Filters.all & ~Filters.status_update & Filters.chat_type.groups, check_flood, run_async=True
 )
 SET_FLOOD_HANDLER = CommandHandler(
-    "setflood", set_flood, pass_args=True
-)  # , filters=Filters.group)
+    "setflood", set_flood, pass_args=True, run_async=True
+)  # , filters=Filters.chat_type.groups)
 SET_FLOOD_MODE_HANDLER = CommandHandler(
-    "setfloodmode", set_flood_mode, pass_args=True
-)  # , filters=Filters.group)
-FLOOD_HANDLER = CommandHandler("flood", flood)  # , filters=Filters.group)
+    "setfloodmode", set_flood_mode, pass_args=True, run_async=True
+)  # , filters=Filters.chat_type.groups)
+FLOOD_HANDLER = CommandHandler("flood", flood, run_async=True)  # , filters=Filters.chat_type.groups)
 
 dispatcher.add_handler(FLOOD_BAN_HANDLER, FLOOD_GROUP)
 dispatcher.add_handler(SET_FLOOD_HANDLER)

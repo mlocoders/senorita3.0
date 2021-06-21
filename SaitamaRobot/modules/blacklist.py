@@ -22,7 +22,7 @@ from SaitamaRobot.modules.helper_funcs.alternate import send_message, typing_act
 BLACKLIST_GROUP = 11
 
 
-@run_async
+
 @user_admin
 @typing_action
 def blacklist(update, context):
@@ -69,7 +69,6 @@ def blacklist(update, context):
         send_message(update.effective_message, text, parse_mode=ParseMode.HTML)
 
 
-@run_async
 @user_admin
 @typing_action
 def add_blacklist(update, context):
@@ -121,7 +120,7 @@ def add_blacklist(update, context):
         )
 
 
-@run_async
+
 @user_admin
 @typing_action
 def unblacklist(update, context):
@@ -198,7 +197,6 @@ def unblacklist(update, context):
         )
 
 
-@run_async
 @loggable
 @user_admin
 @typing_action
@@ -332,7 +330,7 @@ def findall(p, s):
         i = s.find(p, i + 1)
 
 
-@run_async
+
 @user_not_admin
 def del_blacklist(update, context):
     chat = update.effective_chat
@@ -459,27 +457,39 @@ __help__ = """
 
 Blacklists are used to stop certain triggers from being said in a group. Any time the trigger is mentioned, the message will immediately be deleted. A good combo is sometimes to pair this up with warn filters!
 
-*NOTE*: Blacklists do not affect group admins.
+NOTE: Blacklists do not affect group admins.
 
  • `/blacklist`*:* View the current blacklisted words.
 
-Admin only:
+Admins only:
  • `/addblacklist <triggers>`*:* Add a trigger to the blacklist. Each line is considered one trigger, so using different lines will allow you to add multiple triggers.
  • `/unblacklist <triggers>`*:* Remove triggers from the blacklist. Same newline logic applies here, so you can remove multiple triggers at once.
  • `/blacklistmode <off/del/warn/ban/kick/mute/tban/tmute>`*:* Action to perform when someone sends blacklisted words.
 
+Blacklist sticker is used to stop certain stickers. Whenever a sticker is sent, the message will be deleted immediately.
+NOTE: Blacklist stickers do not affect the group admin
+ • `/blsticker`*:* See current blacklisted sticker
+Only admin:
+ • `/addblsticker <sticker link>`*:* Add the sticker trigger to the black list. Can be added via reply sticker
+ • `/unblsticker <sticker link>`*:* Remove triggers from blacklist. The same newline logic applies here, so you can delete multiple triggers at once
+ • `/rmblsticker <sticker link>`*:* Same as above
+ • `/blstickermode <delete/ban/tban/mute/tmute>`*:* sets up a default action on what to do if users use blacklisted stickers
+Note:
+  <sticker link> can be https://t.me/addstickers/<stickerpackname> or just <sticker> or reply to the sticker message
+
 """
 BLACKLIST_HANDLER = DisableAbleCommandHandler(
-    "blacklist", blacklist, pass_args=True, admin_ok=True)
-ADD_BLACKLIST_HANDLER = CommandHandler("addblacklist", add_blacklist)
-UNBLACKLIST_HANDLER = CommandHandler("unblacklist", unblacklist)
+    "blacklist", blacklist, pass_args=True, admin_ok=True, run_async=True)
+ADD_BLACKLIST_HANDLER = CommandHandler("addblacklist", add_blacklist, run_async=True)
+UNBLACKLIST_HANDLER = CommandHandler("unblacklist", unblacklist, run_async=True)
 BLACKLISTMODE_HANDLER = CommandHandler(
-    "blacklistmode", blacklist_mode, pass_args=True)
+    "blacklistmode", blacklist_mode, pass_args=True, run_async=True)
 BLACKLIST_DEL_HANDLER = MessageHandler(
     (Filters.text | Filters.command | Filters.sticker | Filters.photo)
-    & Filters.group,
+    & Filters.chat_type.groups,
     del_blacklist,
     allow_edit=True,
+    run_async=True,
 )
 
 dispatcher.add_handler(BLACKLIST_HANDLER)
