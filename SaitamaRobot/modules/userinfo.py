@@ -411,7 +411,8 @@ def set_about_me(update: Update, context: CallbackContext):
         else:
             message.reply_text(
                 "The info needs to be under {} characters! You have {}.".format(
-                    MAX_MESSAGE_LENGTH // 4, len(info[1]),
+                    MAX_MESSAGE_LENGTH // 4,
+                    len(info[1]),
                 ),
             )
 
