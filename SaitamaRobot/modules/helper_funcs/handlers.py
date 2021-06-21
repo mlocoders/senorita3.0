@@ -1,5 +1,5 @@
 import SaitamaRobot.modules.sql.blacklistusers_sql as sql
-from SaitamaRobot import ALLOW_EXCL
+from SaitamRobot import ALLOW_EXCL
 from SaitamaRobot import DEV_USERS, DRAGONS, DEMONS, TIGERS, WOLVES
 
 from telegram import Update
@@ -101,17 +101,18 @@ class CustomCommandHandler(CommandHandler):
                     filter_result = self.filters(update)
                     if filter_result:
                         return args, filter_result
-                    else:
-                        return False
+                    return False
 
     def handle_update(self, update, dispatcher, check_result, context=None):
         if context:
-            self.collect_additional_context(context, update, dispatcher, check_result)
+            self.collect_additional_context(context, update, dispatcher,
+                                            check_result)
             return self.callback(update, context)
-        else:
-            optional_args = self.collect_optional_args(dispatcher, update, check_result)
-            return self.callback(dispatcher.bot, update, **optional_args)
+        optional_args = self.collect_optional_args(dispatcher, update,
+                                                   check_result)
+        return self.callback(dispatcher.bot, update, **optional_args)
 
+        
     def collect_additional_context(self, context, update, dispatcher, check_result):
         if isinstance(check_result, bool):
             context.args = update.effective_message.text.split()[1:]
@@ -133,7 +134,3 @@ class CustomMessageHandler(MessageHandler):
             self.filters &= ~(
                 Filters.update.edited_message | Filters.update.edited_channel_post
             )
-
-        def check_update(self, update):
-            if isinstance(update, Update) and update.effective_message:
-                return self.filters(update)
