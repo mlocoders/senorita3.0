@@ -32,6 +32,7 @@ from SaitamaRobot.modules.helper_funcs.string_handling import extract_time
 from SaitamaRobot.modules.log_channel import gloggable, loggable
 
 
+
 @connection_status
 @bot_admin
 @can_restrict
@@ -63,23 +64,23 @@ def ban(update: Update, context: CallbackContext) -> str:
 
     if is_user_ban_protected(chat, user_id, member) and user not in DEV_USERS:
         if user_id == OWNER_ID:
-            message.reply_text("Trying to put me against the Founding Titan huh?")
+            message.reply_text("Trying to put me against a God level disaster huh?")
         elif user_id in DEV_USERS:
             message.reply_text("I can't act against our own.")
         elif user_id in DRAGONS:
             message.reply_text(
-                "Fighting this Titan Shifter here will put civilian lives at risk.",
+                "Fighting this Dragon here will put civilian lives at risk.",
             )
         elif user_id in DEMONS:
             message.reply_text(
-                "Bring an order from the Akermans to fight a Royal Blood.",
+                "Bring an order from Heroes association to fight a Demon disaster.",
             )
         elif user_id in TIGERS:
             message.reply_text(
-                "Bring an order from the Ackermans to fight a Scout .",
+                "Bring an order from Heroes association to fight a Tiger disaster.",
             )
         elif user_id in WOLVES:
-            message.reply_text("Garrison abilities make them ban immune!")
+            message.reply_text("Wolf abilities make them ban immune!")
         else:
             message.reply_text("This user has immunity and cannot be banned.")
         return log_message
@@ -114,7 +115,7 @@ def ban(update: Update, context: CallbackContext) -> str:
         )
         if reason:
             reply += f"\n<code> </code><b>•  Reason:</b> \n{html.escape(reason)}"
-        bot.sendMessage(chat.id, reply, parse_mode=ParseMode.HTML, quote=False)
+        bot.sendMessage(chat.id, reply, parse_mode=ParseMode.HTML)
         return log
 
     except BadRequest as excp:
@@ -124,16 +125,15 @@ def ban(update: Update, context: CallbackContext) -> str:
                 return log
             message.reply_text("Banned!", quote=False)
             return log
-        else:
-            LOGGER.warning(update)
-            LOGGER.exception(
-                "ERROR banning user %s in chat %s (%s) due to %s",
-                user_id,
-                chat.title,
-                chat.id,
-                excp.message,
-            )
-            message.reply_text("Uhm...that didn't work...")
+        LOGGER.warning(update)
+        LOGGER.exception(
+            "ERROR banning user %s in chat %s (%s) due to %s",
+            user_id,
+            chat.title,
+            chat.id,
+            excp.message,
+        )
+        message.reply_text("Uhm...that didn't work...")
 
     return log_message
 
@@ -209,22 +209,21 @@ def temp_ban(update: Update, context: CallbackContext) -> str:
         if excp.message == "Reply message not found":
             # Do not reply
             message.reply_text(
-                f"Banned! User will be banned for {time_val}.", quote=False,
+                f"Banned! User will be banned for {time_val}.",
+                quote=False,
             )
             return log
-        else:
-            LOGGER.warning(update)
-            LOGGER.exception(
-                "ERROR banning user %s in chat %s (%s) due to %s",
-                user_id,
-                chat.title,
-                chat.id,
-                excp.message,
-            )
-            message.reply_text("Well damn, I can't ban that user.")
+        LOGGER.warning(update)
+        LOGGER.exception(
+            "ERROR banning user %s in chat %s (%s) due to %s",
+            user_id,
+            chat.title,
+            chat.id,
+            excp.message,
+        )
+        message.reply_text("Well damn, I can't ban that user.")
 
     return log_message
-
 
 @connection_status
 @bot_admin
