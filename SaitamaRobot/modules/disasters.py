@@ -52,7 +52,6 @@ def check_user_id(user_id: int, context: CallbackContext) -> Optional[str]:
 ### Deep link example ends
 
 
-@run_async
 @dev_plus
 @gloggable
 def addsudo(update: Update, context: CallbackContext) -> str:
@@ -111,7 +110,6 @@ def addsudo(update: Update, context: CallbackContext) -> str:
     return log_message
 
 
-@run_async
 @sudo_plus
 @gloggable
 def addsupport(
@@ -170,7 +168,6 @@ def addsupport(
     return log_message
 
 
-@run_async
 @sudo_plus
 @gloggable
 def addwhitelist(update: Update, context: CallbackContext) -> str:
@@ -226,7 +223,6 @@ def addwhitelist(update: Update, context: CallbackContext) -> str:
     return log_message
 
 
-@run_async
 @sudo_plus
 @gloggable
 def addtiger(update: Update, context: CallbackContext) -> str:
@@ -287,7 +283,6 @@ def addtiger(update: Update, context: CallbackContext) -> str:
     return log_message
 
 
-@run_async
 @dev_plus
 @gloggable
 def removesudo(update: Update, context: CallbackContext) -> str:
@@ -330,7 +325,6 @@ def removesudo(update: Update, context: CallbackContext) -> str:
         return ""
 
 
-@run_async
 @sudo_plus
 @gloggable
 def removesupport(update: Update, context: CallbackContext) -> str:
@@ -373,7 +367,6 @@ def removesupport(update: Update, context: CallbackContext) -> str:
         return ""
 
 
-@run_async
 @sudo_plus
 @gloggable
 def removewhitelist(update: Update, context: CallbackContext) -> str:
@@ -415,7 +408,6 @@ def removewhitelist(update: Update, context: CallbackContext) -> str:
         return ""
 
 
-@run_async
 @sudo_plus
 @gloggable
 def removetiger(update: Update, context: CallbackContext) -> str:
@@ -457,7 +449,6 @@ def removetiger(update: Update, context: CallbackContext) -> str:
         return ""
 
 
-@run_async
 @whitelist_plus
 def whitelistlist(update: Update, context: CallbackContext):
     reply = "<b>Known Garrisons♠️:</b>\n"
@@ -476,7 +467,7 @@ def whitelistlist(update: Update, context: CallbackContext):
     m.edit_text(reply, parse_mode=ParseMode.HTML)
 
 
-@run_async
+
 @whitelist_plus
 def tigerlist(update: Update, context: CallbackContext):
     reply = "<b>Known Scouts🔰:</b>\n"
@@ -494,7 +485,6 @@ def tigerlist(update: Update, context: CallbackContext):
     m.edit_text(reply, parse_mode=ParseMode.HTML)
 
 
-@run_async
 @whitelist_plus
 def supportlist(update: Update, context: CallbackContext):
     bot = context.bot
@@ -512,7 +502,6 @@ def supportlist(update: Update, context: CallbackContext):
     m.edit_text(reply, parse_mode=ParseMode.HTML)
 
 
-@run_async
 @whitelist_plus
 def sudolist(update: Update, context: CallbackContext):
     bot = context.bot
@@ -531,7 +520,6 @@ def sudolist(update: Update, context: CallbackContext):
     m.edit_text(reply, parse_mode=ParseMode.HTML)
 
 
-@run_async
 @whitelist_plus
 def devlist(update: Update, context: CallbackContext):
     bot = context.bot
@@ -642,20 +630,20 @@ Group admins/group owners do not need these commands.
 Visit @{SUPPORT_CHAT} for more information.
 """
 
-SUDO_HANDLER = CommandHandler(("addsudo", "addtitanshifter"), addsudo)
-SUPPORT_HANDLER = CommandHandler(("addsupport", "addroyalblood"), addsupport)
+SUDO_HANDLER = CommandHandler(("addsudo", "addtitanshifter"), addsudo, run_async=True)
+SUPPORT_HANDLER = CommandHandler(("addsupport", "addroyalblood"), addsupport, run_async=True)
 TIGER_HANDLER = CommandHandler(("addscout"), addtiger)
-WHITELIST_HANDLER = CommandHandler(("addgarrison", "addwhitelist"), addwhitelist)
-UNSUDO_HANDLER = CommandHandler(("removesudo", "removetitanshifter"), removesudo)
-UNSUPPORT_HANDLER = CommandHandler(("removesupport", "removeroyalblood"), removesupport)
+WHITELIST_HANDLER = CommandHandler(("addgarrison", "addwhitelist"), addwhitelist, run_async=True)
+UNSUDO_HANDLER = CommandHandler(("removesudo", "removetitanshifter"), removesudo, run_async=True)
+UNSUPPORT_HANDLER = CommandHandler(("removesupport", "removeroyalblood"), removesupport, run_async=True)
 UNTIGER_HANDLER = CommandHandler(("removescout"), removetiger)
-UNWHITELIST_HANDLER = CommandHandler(("removewhitelist", "removegarrison"), removewhitelist)
+UNWHITELIST_HANDLER = CommandHandler(("removewhitelist", "removegarrison"), removewhitelist, run_async=True)
 
-WHITELISTLIST_HANDLER = CommandHandler(["whitelistlist", "garrisons"], whitelistlist)
-TIGERLIST_HANDLER = CommandHandler(["scouts"], tigerlist)
-SUPPORTLIST_HANDLER = CommandHandler(["supportlist", "royalbloods"], supportlist)
-SUDOLIST_HANDLER = CommandHandler(["sudolist", "titanshifters"], sudolist)
-DEVLIST_HANDLER = CommandHandler(["devlist", "ackermans"], devlist)
+WHITELISTLIST_HANDLER = CommandHandler(["whitelistlist", "garrisons"], whitelistlist, run_async=True)
+TIGERLIST_HANDLER = CommandHandler(["scouts"], tigerlist, run_async=True)
+SUPPORTLIST_HANDLER = CommandHandler(["supportlist", "royalbloods"], supportlist, run_async=True)
+SUDOLIST_HANDLER = CommandHandler(["sudolist", "titanshifters"], sudolist, run_async=True)
+DEVLIST_HANDLER = CommandHandler(["devlist", "ackermans"], devlist, run_async=True)
 
 dispatcher.add_handler(SUDO_HANDLER)
 dispatcher.add_handler(SUPPORT_HANDLER)
@@ -672,7 +660,7 @@ dispatcher.add_handler(SUPPORTLIST_HANDLER)
 dispatcher.add_handler(SUDOLIST_HANDLER)
 dispatcher.add_handler(DEVLIST_HANDLER)
 
-__mod_name__ = "Disasters"
+__mod_name__ = "Bot Owner"
 __handlers__ = [
     SUDO_HANDLER,
     SUPPORT_HANDLER,
