@@ -5,11 +5,9 @@ from pyrogram import filters
 from pyrogram.types import Message
 
 from SaitamaRobot.utils.consts import http
-from SaitamaRobot import pbot
+from SaitamaRobot import pbot as eren
 
-
-
-@pbot.on_message(filters.command("paste"))
+@eren.on_message(filters.command("paste"))
 async def hastebin(c: Client, m: Message, strings):
     if m.reply_to_message:
         if m.reply_to_message.document:
