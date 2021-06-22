@@ -524,7 +524,7 @@ def check_not_bot(member, chat_id, message_id, context):
             pass
 
 
-@run_async
+
 def left_member(update: Update, context: CallbackContext):
     bot = context.bot
     chat = update.effective_chat
@@ -633,7 +633,7 @@ def left_member(update: Update, context: CallbackContext):
             )
 
 
-@run_async
+
 @user_admin
 def welcome(update: Update, context: CallbackContext):
     args = context.args
@@ -696,7 +696,7 @@ def welcome(update: Update, context: CallbackContext):
             )
 
 
-@run_async
+
 @user_admin
 def goodbye(update: Update, context: CallbackContext):
     args = context.args
@@ -773,7 +773,7 @@ def set_welcome(update: Update, context: CallbackContext) -> str:
     )
 
 
-@run_async
+
 @user_admin
 @loggable
 def reset_welcome(update: Update, context: CallbackContext) -> str:
@@ -793,7 +793,7 @@ def reset_welcome(update: Update, context: CallbackContext) -> str:
     )
 
 
-@run_async
+
 @user_admin
 @loggable
 def set_goodbye(update: Update, context: CallbackContext) -> str:
@@ -816,7 +816,7 @@ def set_goodbye(update: Update, context: CallbackContext) -> str:
     )
 
 
-@run_async
+
 @user_admin
 @loggable
 def reset_goodbye(update: Update, context: CallbackContext) -> str:
