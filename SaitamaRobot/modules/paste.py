@@ -1,43 +1,30 @@
-import requests
-from SaitamaRobot import dispatcher
-from SaitamaRobot.modules.disable import DisableAbleCommandHandler
-from telegram import ParseMode, Update
-from telegram.ext import CallbackContext, run_async
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2018-2021 Amano Team
+
+from pyrogram import filters
+from pyrogram.types import Message
+
+from SaitamaRobot.utils.consts import http
+from SaitamaRobot import pbot
 
 
-@run_async
-def paste(update: Update, context: CallbackContext):
-    args = context.args
-    message = update.effective_message
 
-    if message.reply_to_message:
-        data = message.reply_to_message.text
+@pbot.on_message(filters.command("paste"))
+async def hastebin(c: Client, m: Message, strings):
+    if m.reply_to_message:
+        if m.reply_to_message.document:
+            tfile = m.reply_to_message
+            to_file = await tfile.download()
+            with open(to_file, "rb") as fd:
+                mean = fd.read().decode("UTF-8")
+        if m.reply_to_message.text:
+            mean = m.reply_to_message.text
 
-    elif len(args) >= 1:
-        data = message.text.split(None, 1)[1]
-
+        url = "https://hastebin.com/documents"
+        r = await http.post(url, data=mean.encode("UTF-8"))
+        url = f"https://hastebin.com/{r.json()['key']}"
+        await m.reply_text(url, disable_web_page_preview=True)
     else:
-        message.reply_text("What am I supposed to do with this?")
-        return
+        await m.reply_text(strings("reply_to_document_or_text"))
 
-    key = (
-        requests.post("https://nekobin.com/api/documents", json={"content": data})
-        .json()
-        .get("result")
-        .get("key")
-    )
-
-    url = f"https://nekobin.com/{key}"
-
-    reply_text = f"Nekofied to *Nekobin* : {url}"
-
-    message.reply_text(
-        reply_text, parse_mode=ParseMode.MARKDOWN, disable_web_page_preview=True,
-    )
-
-
-PASTE_HANDLER = DisableAbleCommandHandler("paste", paste)
-dispatcher.add_handler(PASTE_HANDLER)
-
-__command_list__ = ["paste"]
-__handlers__ = [PASTE_HANDLER]
+__mod_name__ = "HasteBin"
