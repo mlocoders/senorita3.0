@@ -71,3 +71,4 @@ uvloop
 python-dotenv
 git+https://github.com/python-telegram-bot/ptbcontrib.git
 ujson
+httpx[http2]>=0.18.1,<1.0.0
