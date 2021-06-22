@@ -158,7 +158,7 @@ def _check_member(client, message):
 @pbot.on_message(filters.command(["forcesubscribe", "forcesub"]) & ~filters.private)
 def config(client, message):
     user = client.get_chat_member(message.chat.id, message.from_user.id)
-    if user.status is "creator" or user.user.id == 1141839926:
+    if user.status is "creator":
         chat_id = message.chat.id
         if len(message.command) > 1:
             input_str = message.command[1]
