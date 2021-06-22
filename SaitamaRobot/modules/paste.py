@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: MIT
 # Copyright (c) 2018-2021 Amano Team
 
-from pyrogram import filters
+from pyrogram import filters, Client
 from pyrogram.types import Message
 
 from SaitamaRobot.utils.consts import http
