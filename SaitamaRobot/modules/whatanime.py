@@ -62,8 +62,8 @@ async def whatanime(c: Client, m: Message):
         proc = await asyncio.create_subprocess_exec('ffmpeg', '-i', path, '-frames:v', '1', new_path)
         await proc.communicate()
         await reply.edit_text('Uploading...')
-        requests.post("https://api.trace.moe/search",
-  files={"image": open(new_path, "rb")}) as resp:
+        with open(new_path, 'rb') as file:
+          async with requests.post("https://api.trace.moe/search", data={'image': file}) as resp:
         json = await resp.json()
     if isinstance(json, str):
         await reply.edit_text(html.escape(json))
