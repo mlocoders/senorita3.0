@@ -69,3 +69,5 @@ opencv-python-headless
 aiofiles
 uvloop
 python-dotenv
+git+https://github.com/python-telegram-bot/ptbcontrib.git
+ujson
