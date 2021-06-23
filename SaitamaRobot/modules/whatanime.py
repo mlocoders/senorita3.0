@@ -11,7 +11,7 @@ from datetime import timedelta
 from pyrogram import Client, filters
 from pyrogram.types import Message
 from SaitamaRobot import pbot
-
+import requests
 session = aiohttp.ClientSession()
 progress_callback_data = {}
 
@@ -62,9 +62,8 @@ async def whatanime(c: Client, m: Message):
         proc = await asyncio.create_subprocess_exec('ffmpeg', '-i', path, '-frames:v', '1', new_path)
         await proc.communicate()
         await reply.edit_text('Uploading...')
-        with open(new_path, 'rb') as file:
-            async with session.post('https://trace.moe/', data={'image': file}) as resp:
-                json = await resp.json()
+        requests.post("https://api.trace.moe/search",
+  files={"image": open("baz.jpg", "rb")}).json()
     if isinstance(json, str):
         await reply.edit_text(html.escape(json))
     else:
