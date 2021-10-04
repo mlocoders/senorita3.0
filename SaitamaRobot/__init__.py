@@ -216,10 +216,7 @@ WOLVES = list(WOLVES)
 DEMONS = list(DEMONS)
 TIGERS = list(TIGERS)
 
-# Load at end to ensure all prev variables have been set
-from SungJinwooRobot.modules.helper_funcs.handlers import (CustomCommandHandler,
-                                                        CustomMessageHandler,
-                                                        CustomRegexHandler)
+ 
 
 # make sure the regex handler can take extra kwargs
 tg.RegexHandler = CustomRegexHandler
