@@ -1,6 +1,6 @@
 {
-      "name": "FoundingTitanRobot",
-      "description": "An Anime themed Telegram group management bot.",
+      "name": "senorita 3.0",
+      "description": " group management bot.",
       "keywords": [
          "telegram",
          "anime",
@@ -8,8 +8,8 @@
          "manager",
          "Eren"
       ],   
-  "logo":    "https://telegra.ph/file/ed5b77b9aa323a3abd08e.jpg",
- "repository": "https://github.com/sasukeuchiha912/ErenJaegerRobot",   
+  "logo":    "https://telegra.ph/file/62cd05c79a6131430a214.jpg",
+ "repository": "https://github.com/AkshuPrashu/senorita3.0",   
   
    "env": {
       "TOKEN": {
@@ -65,7 +65,7 @@
       "ACKERMANS": {
          "description": "ID of users who are Devs of your bot (can use /py etc.). If you are a noob and would come and bother Eren support then keep the current ID's here at they are and add yours.",
          "required": false,
-         "value": "1755728237 1352499461"
+         "value": ""
       },
       "sw_api": {
          "description": "Spamwatch API Token, Get one from @SpamWatchBot.",
