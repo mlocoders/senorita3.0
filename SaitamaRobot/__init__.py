@@ -95,4 +95,3 @@ if ENV:
     REDIS_URL = os.environ.get("REDIS_URI", None)
     ARQ_API = os.environ.get("ARQ_API", None)
     BOT_ID = int(os.environ.get("BOT_ID", None)
- 
