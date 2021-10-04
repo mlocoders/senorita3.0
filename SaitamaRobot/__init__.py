@@ -95,10 +95,7 @@ if ENV:
     REDIS_URL = os.environ.get("REDIS_URI", None)
     ARQ_API = os.environ.get("ARQ_API", None)
     BOT_ID = int(os.environ.get("BOT_ID", None)
-    SPAMWATCH_API = os.environ.get("SPAMWATCH_API", None)
-    ARQ_API_URL =  "https://thearq.tech"
-    ARQ_API_KEY = ARQ_API
-    ALLOW_CHATS = os.environ.get("ALLOW_CHATS", True)
+     
     
 
     try:
