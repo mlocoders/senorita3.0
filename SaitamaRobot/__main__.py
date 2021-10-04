@@ -86,29 +86,29 @@ Built by weebs for weebs, I specialize in managing anime eccentric communities.
 buttons = [
     [
         InlineKeyboardButton(
-            text="➕ Add Me", url="t.me/FoundingTitanRobot?startgroup=true"),    
+            text="➕ Add Me", url="t.me/misssenorita_bot?startgroup=true"),    
         InlineKeyboardButton(
               text="⚙️ Help", callback_data="help_back"),   
    ],
     [      
        InlineKeyboardButton(
-            text="📖 Quick Setup", url="https://t.me/foundingtitanupdates/4"),        
+            text="📖 Quick Setup", url="https://t.me/mlo_network"),        
           InlineKeyboardButton(
-            text="📋 ChangeLogs", url="https://t.me/FoundingTitanupdates"),
+            text="📋 ChangeLogs", url="https://t.me/SENORITA_LOGS"),
     
    ],
     [      
           InlineKeyboardButton(
-            text="🗣️ Support", url="https://t.me/Foundingtitansupport"),
+            text="🗣️ Support", url="https://t.me/mlo_empire"),
           InlineKeyboardButton(
-            text="🌐 Nexus Network", url="https://t.me/Nexus_Network",
+            text="🌐MLO Network", url="https://t.me/mlo_Network",
     
          ),
     ],
 ] 
 
 HELP_STRINGS = """
-Hey there, I'm Eren Jaeger!
+Hey there, I'm senorita v3.0 [.](https://telegra.ph/file/2ce7dd4589bff72feab7a.mp4) !
 To make me functional, make sure that i have enough rights in your group.
 Helpful commands:
 - /start: Starts me! You've probably already used this.
