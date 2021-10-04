@@ -207,7 +207,7 @@ telethn = TelegramClient("saitama", API_ID, API_HASH)
 pgram = Client("SungPyro", api_id=API_ID, api_hash=API_HASH, bot_token=TOKEN)
 mongo_client = MongoClient(MONGO_DB_URI)
 db = mongo_client.SungJinwooRobot
-arq = ARQ(ARQ_API_URL, ARQ_API_KEY, aiohttpsession)
+
 dispatcher = updater.dispatcher
 
 DRAGONS = list(DRAGONS) + list(DEV_USERS)
